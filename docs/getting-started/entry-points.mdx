@@ -1,0 +1,63 @@
+---
+id: entry-points
+title: Entry Points
+sidebar_label: Entry Points
+---
+
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
+The webpack configuration included with the `theme_boilerplate` project will automatically perform code-splitting and output a separate bundle for each file with a `.js` or `.jsx` extension in the `src/entries/` directory.
+
+Each file will result in an ouput bundle following the pattern `[name].bundle.js`. For example, an file in `src/entries/` with a name of `home.jsx` will output a file named `home.bundle.js`.
+
+Webpack bundles can be included via a script tag like this:
+
+```html
+<script src="/asset_bundles/home.bundle.js"></script>
+```
+
+You should split your code into appropriate bundles using these entry files. One bundle for each page is usually sensible, as it allows you to only include JavaScript code that is needed for a particular page. Below is a table suggesting some entry point names, the pages on which they would be included and the name of the output bundle:
+
+| Page                                              | Entry                  | Output bundle name          |
+|---------------------------------------------------|------------------------|-----------------------------|
+| homepage                                          | home.jsx               | home.bundle.js              |
+| Properties index page (e.g. /properties/sales)    | properties-index.jsx   | properties-index.bundle.js  |
+| Property show page (e.g. /properties/:id/sales)   | properties-show.jsx    | properties-show.bundle.js   |
+| Branches index page (e.g. /branches)              | branches-index.js      | branches-index.bundle.js    |
+
+If you need to included a module on multiple pages, you can simple import it into each entry point it is required. For example, you may have a module for a carousel that needs to be included on both the homepage and properties show page. You might import it into the relevant entry point like this (in this example we're imagining the module exports a default function that runs the carousel code):
+
+```js
+import initCarousel from './components/carousel';
+
+initCarousel();
+```
+
+The theme boilerplate also includes a `global.jsx` entry point file. This should only include modules that are required on every page (this might include things like the user profile system).
+
+Additionally, the webpack configuration will automatically split certain third-party modules into a bundle named `common.bundle.js`. This should only include vendor libraries that are required on every page. By default, this only includes:
+
+- react
+- react-dom
+- redux
+- react-redux
+
+You should ensure the `common.bundle.js` is included **before all other bundles** on **every** page, followed by the `global` bundle:
+
+```html
+<script src="common.bundle.js"></script>
+<script src="global.bundle.js"></script>
+<!-- Other bundles would go here -->
+```
+
+It's a good idea to regularly assess the relative size of your bundles. You can do this by running the following command:
+
+```
+$ yarn build:analyze
+```
+
+This will run a production build of your assets and display them visually in a browser tab using a tool called [Webpack Bundle Analyzer](https://www.npmjs.com/package/webpack-bundle-analyzer). See the example below:
+
+<img alt="Webpack bundle analyzer output" src={useBaseUrl('img/bundle-analyzer-output-example.png')} />
+
+You may notice some bundles being created that do not correspond to your entry points (by default these are numbered, e.g. `0.bundle.js`, `1.bundle.js` etc). These bundles are dynamically created by Webpack for optimization. For more information, see the section on Dynamic Imports.
