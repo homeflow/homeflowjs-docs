@@ -174,7 +174,7 @@ import { LocationInput } from 'homeflowjs/search';
 |handleSubmit     |Function |Submit handler for the form.                                                 |
 |placeholder      |String   |The placeholder text displayed in the input. Default is 'Enter a location...'|
 
-## ChannelRadioButton
+## `ChannelRadioButton`
 
 The `ChannelRadioButton` component will render a single radio button for channel based on the `type` provided.
 
@@ -200,3 +200,66 @@ import { ChannelRadioButton } from 'homeflowjs/search';
 | Prop            | Type    | Description                                                            |
 |-----------------|---------|------------------------------------------------------------------------|
 |type             |String   |Should be 'sales' or 'lettings'                                         |
+
+## `PriceSelect`
+
+The `PriceSelect` component will render a select for min or max price based on the `type` provided. It will populate
+
+```jsx
+import React from 'react';
+import { ChannelRadioButton } from 'homeflowjs/search';
+
+<PriceSelect type="min" />
+<PriceSelect type="max" />
+
+```
+
+### Props
+
+| Prop            | Type    | Description                                                            |
+|-----------------|---------|------------------------------------------------------------------------|
+|type             |String   |Should be 'min' or 'max'.                                               |
+|salesPrices      |Array    |Array of integers to override default sales prices.                     |
+|lettingsPrices   |Array    |Array of integers to override default lettings prices.                  |
+
+## `BedroomsSelect`
+
+The `BedroomsSelect` component will render min or max price select inputs.
+
+```jsx
+import React from 'react';
+import { BedroomsSelect } from 'homeflowjs/search';
+
+<div className="col-md-3 form-group">
+  <BedroomsSelect type="min" className="form-control" />
+  <BedroomsSelect type="max" className="form-control" />
+</div>
+
+```
+
+### Props
+
+| Prop            | Type    | Description                                                            |
+|-----------------|---------|------------------------------------------------------------------------|
+|bedValues        |Array    |You can override the default options for beds.                          |
+
+## `GenericSearchField`
+
+If you need a form field for which there isn't a component provided, or you need more customisation, you can use the `GenericSearchField` component.
+
+By passing a `type` prop, you can render either a text `<input>` or a `<select>` which will be hooked up to the relevant redux state and action (although make sure you only use valid camelCase homeflow search parameters as the `name`).
+
+This example will render a `<select>` field to match properties created in a number of days:
+
+```jsx
+import React from 'react';
+import { GenericSearchField } from 'homeflowjs/search';
+
+const NewerThanSelect = () => (
+  <GenericSearchField type="select" name="createdAgo">
+    <option value="5">Newer than 5 days</option>
+    <option value="10">Newer than 10 days</option>
+    <option value="15">Newer than 15 days</option>
+  </GenericSearchField>
+)
+```

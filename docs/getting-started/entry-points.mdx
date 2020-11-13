@@ -6,9 +6,9 @@ sidebar_label: Entry Points
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-The webpack configuration included with the `theme_boilerplate` project will automatically perform code-splitting and output a separate bundle for each file with a `.js` or `.jsx` extension in the `src/entries/` directory.
+The webpack configuration included with the `theme_boilerplate` project will automatically perform [code-splitting](https://webpack.js.org/guides/code-splitting/) and output a separate bundle for each file with a `.js` or `.jsx` extension in the `src/entries/` directory.
 
-Each file will result in an ouput bundle following the pattern `[name].bundle.js`. For example, an file in `src/entries/` with a name of `home.jsx` will output a file named `home.bundle.js`.
+Each file will result in an ouput bundle following the pattern `[name].bundle.js`. For example, a file in `src/entries/` with a name of `home.jsx` will output a file named `home.bundle.js`.
 
 Webpack bundles can be included via a script tag like this:
 
