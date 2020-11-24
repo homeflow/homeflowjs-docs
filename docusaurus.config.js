@@ -1,8 +1,8 @@
 module.exports = {
   title: 'HomeflowJS',
   tagline: 'The JavaScript toolkit for creating themes on the Homeflow platform.',
-  url: 'https://your-docusaurus-test-site.com',
-  baseUrl: '/',
+  url: 'https://developer.homeflow.co.uk/homeflowjs-docs',
+  baseUrl: '/homeflowjs/',
   onBrokenLinks: 'throw',
   favicon: 'img/favicon.ico',
   organizationName: 'Homeflow',
