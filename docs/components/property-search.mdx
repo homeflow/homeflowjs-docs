@@ -3,6 +3,9 @@ id: property-search
 title: Property Search
 ---
 
+import { TESTBedroomsSelect } from 'homeflowjs/search/bedrooms-select/bedrooms-select.component';
+import { TESTPriceSelect } from 'homeflowjs/search/price-select/price-select.component';
+
 ## `SearchForm`
 
 The `SearchForm` component should wrap all fields on your search form.
@@ -19,7 +22,6 @@ const SearchFormExample = () => (
 ```
 
 Here is an example of a complete search form:
-
 
 ```jsx
 import React from 'react';
@@ -203,14 +205,27 @@ import { ChannelRadioButton } from 'homeflowjs/search';
 
 ## `PriceSelect`
 
-The `PriceSelect` component will render a select for min or max price based on the `type` provided. It will populate
+The `PriceSelect` component will render a select for min or max price based on the `type` provided.
+
+The price options should change automatically based on the selected channel.
+
+Pass the `reactSelect` prop to render a decorated dropdown or omit it to render a normal select.
+
+<div style={{ paddingTop: '10px', paddingBottom: '30px'}}>
+  <div style={{ display: 'inline-block', width: '40%', paddingRight: '5%' }}>
+    <TESTPriceSelect type="min" setSearchField={() => null} reactSelect />
+  </div>
+  <div style={{ display: 'inline-block', width: '40%', paddingRight: '5%' }}>
+    <TESTPriceSelect type="max" setSearchField={() => null} reactSelect />
+  </div>
+</div>
 
 ```jsx
 import React from 'react';
-import { ChannelRadioButton } from 'homeflowjs/search';
+import { PriceSelect } from 'homeflowjs/search';
 
-<PriceSelect type="min" />
-<PriceSelect type="max" />
+<PriceSelect type="min" reactSelect />
+<PriceSelect type="max" reactSelect />
 
 ```
 
@@ -218,22 +233,46 @@ import { ChannelRadioButton } from 'homeflowjs/search';
 
 | Prop            | Type    | Description                                                            |
 |-----------------|---------|------------------------------------------------------------------------|
-|type             |String   |Should be 'min' or 'max'.                                               |
-|salesPrices      |Array    |Array of integers to override default sales prices.                     |
-|lettingsPrices   |Array    |Array of integers to override default lettings prices.                  |
+|`type`           |String   |Should be 'min' or 'max'.                                               |
+|`priceConfig`    |Object   |Allows setting custom price options and other config (see below)        |
+|`reactSelect`    |Boolean  |Whether to use the reac-select library to render a decorated dropdown   |
+
+#### `priceConfig`
+
+`priceConfig` can be used to set custom prices for sales and lettings. You can also include `lettingsAs: 'pw'` to display lettings prices as per-week instead of per-month:
+
+```jsx
+<PriceSelect
+  type="min"
+  priceConfig={
+    salesPrices: [1000, 2000, 3000],
+    lettingsPrices: [100, 200, 300],
+    lettingsAs: 'pw',
+  }
+/>
+```
 
 ## `BedroomsSelect`
 
 The `BedroomsSelect` component will render min or max price select inputs.
 
+Pass the `reactSelect` prop to render a decorated dropdown or omit it to render a normal select.
+
+<div style={{ paddingTop: '10px', paddingBottom: '30px'}}>
+  <div style={{ display: 'inline-block', width: '40%', paddingRight: '5%' }}>
+    <TESTBedroomsSelect type="min" setSearchField={() => null} reactSelect />
+  </div>
+  <div style={{ display: 'inline-block', width: '40%', paddingRight: '5%' }}>
+    <TESTBedroomsSelect type="max" setSearchField={() => null} reactSelect />
+  </div>
+</div>
+
 ```jsx
 import React from 'react';
 import { BedroomsSelect } from 'homeflowjs/search';
 
-<div className="col-md-3 form-group">
-  <BedroomsSelect type="min" className="form-control" />
-  <BedroomsSelect type="max" className="form-control" />
-</div>
+<BedroomsSelect type="min" reactSelect />
+<BedroomsSelect type="max" reactSelect />
 
 ```
 
@@ -241,7 +280,9 @@ import { BedroomsSelect } from 'homeflowjs/search';
 
 | Prop            | Type    | Description                                                            |
 |-----------------|---------|------------------------------------------------------------------------|
-|bedValues        |Array    |You can override the default options for beds.                          |
+|`type`           |String   |Should be 'min' or 'max'.                                               |
+|`bedValues`      |Array    |You can override the default options for beds.                          |
+|`reactSelect`    |Boolean  |Whether to use the reac-select library to render a decorated dropdown   |
 
 ## `GenericSearchField`
 

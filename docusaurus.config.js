@@ -9,8 +9,8 @@ module.exports = {
   projectName: 'homeflowjs-docs',
   themeConfig: {
     prism: {
-      theme: require('prism-react-renderer/themes/palenight'),
-      darkTheme: require('prism-react-renderer/themes/dracula'),
+      theme: require('prism-react-renderer/themes/github'),
+      darkTheme: require('prism-react-renderer/themes/vsDark'),
     },
     navbar: {
       title: 'HomeflowJS',
@@ -75,4 +75,5 @@ module.exports = {
       },
     ],
   ],
+  plugins: ['docusaurus-plugin-sass'],
 };
