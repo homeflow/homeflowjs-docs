@@ -3,9 +3,6 @@ id: property-search
 title: Property Search
 ---
 
-import { TESTBedroomsSelect } from 'homeflowjs/search/bedrooms-select/bedrooms-select.component';
-import { TESTPriceSelect } from 'homeflowjs/search/price-select/price-select.component';
-
 ## `SearchForm`
 
 The `SearchForm` component should wrap all fields on your search form.
@@ -211,15 +208,6 @@ The price options should change automatically based on the selected channel.
 
 Pass the `reactSelect` prop to render a decorated dropdown or omit it to render a normal select.
 
-<div style={{ paddingTop: '10px', paddingBottom: '30px'}}>
-  <div style={{ display: 'inline-block', width: '40%', paddingRight: '5%' }}>
-    <TESTPriceSelect type="min" setSearchField={() => null} reactSelect />
-  </div>
-  <div style={{ display: 'inline-block', width: '40%', paddingRight: '5%' }}>
-    <TESTPriceSelect type="max" setSearchField={() => null} reactSelect />
-  </div>
-</div>
-
 ```jsx
 import React from 'react';
 import { PriceSelect } from 'homeflowjs/search';
@@ -257,15 +245,6 @@ import { PriceSelect } from 'homeflowjs/search';
 The `BedroomsSelect` component will render min or max price select inputs.
 
 Pass the `reactSelect` prop to render a decorated dropdown or omit it to render a normal select.
-
-<div style={{ paddingTop: '10px', paddingBottom: '30px'}}>
-  <div style={{ display: 'inline-block', width: '40%', paddingRight: '5%' }}>
-    <TESTBedroomsSelect type="min" setSearchField={() => null} reactSelect />
-  </div>
-  <div style={{ display: 'inline-block', width: '40%', paddingRight: '5%' }}>
-    <TESTBedroomsSelect type="max" setSearchField={() => null} reactSelect />
-  </div>
-</div>
 
 ```jsx
 import React from 'react';
