@@ -4,4 +4,14 @@ title: Retrofitting HomeflowJS to Existing Themes
 sidebar_label: Retrofitting
 ---
 
-TODO
+If you are adding HomeflowJS to an existing theme you'll need to install it, as well as its peer dependencies:
+
+```
+$ yarn add homeflowjs react react-dom redux react-redux react-router-dom
+```
+
+You should then copy across the `webpack/` directory from the theme_boilerplate project here:
+
+[Theme boilerplate Webpack directory](https://bitbucket.org/homeflow_developers/theme_boilerplate/src/d5523db6f67cb5a405494a9af4c928b5659a93f4/webpack/)
+
+Ensure you have a `src/` directory containing an `entries/` directory.

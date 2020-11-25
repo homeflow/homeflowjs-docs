@@ -5,6 +5,7 @@ module.exports = {
       'getting-started/configuration',
       'getting-started/entry-points',
       'getting-started/redux',
+      'getting-started/retrofitting',
     ],
     'Components': [
       'components/property-search',
