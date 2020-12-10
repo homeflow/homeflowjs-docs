@@ -9,6 +9,7 @@ module.exports = {
     ],
     'Components': [
       'components/property-search',
+      'components/property-results',
       'components/modals',
       'components/user-profile',
     ],

@@ -1,0 +1,34 @@
+---
+id: property-results
+title: Property Results
+---
+
+## `PropertiesResults`
+
+The `PropertyResults` component will render search results to the page.
+
+It will render each property as once of the item components provided depending on whether the hash is `#/grid` or `#/list`. These components will receive the `property` as a prop.
+
+You can also specify a `defaultView` prop as either 'grid', 'list' or 'map' for that view to be rendered when one of the other hashes isn't present.
+
+```jsx
+import { PropertiesResults } from 'homeflowjs/properties';
+
+<PropertiesResults
+  GridItem={GridItem}
+  ListItem={ListItem}
+  defaultView="grid"
+/>
+```
+
+## `LoadMoreButton`
+
+If you wish to control pagination asynchronously using a button, you can use the `LoadMoreButton` component. It will automatically disappear once there are no more properties to render.
+
+```jsx
+import { LoadMoreButton } from 'homeflowjs/properties';
+
+<LoadMoreButton className="load-more-button">
+  Load more properties
+</LoadMoreButton>
+```
