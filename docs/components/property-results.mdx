@@ -5,9 +5,9 @@ title: Property Results
 
 ## `PropertiesResults`
 
-The `PropertyResults` component will render search results to the page.
+The `PropertiesResults` component will render search results to the page.
 
-It will render each property as once of the item components provided depending on whether the hash is `#/grid` or `#/list`. These components will receive the `property` as a prop.
+It will render each property as one of the item components provided depending on whether the hash is `#/grid` or `#/list`. These components will receive the `property` as a prop.
 
 You can also specify a `defaultView` prop as either 'grid', 'list' or 'map' for that view to be rendered when one of the other hashes isn't present.
 
@@ -31,4 +31,19 @@ import { LoadMoreButton } from 'homeflowjs/properties';
 <LoadMoreButton className="load-more-button">
   Load more properties
 </LoadMoreButton>
+```
+
+## `SavePropertyButton`
+
+Button to add/remove a property from the user's saved properties.
+
+```jsx
+import { SavePropertyButton } from 'homeflowjs/properties';
+
+<SavePropertyButton
+  className="fav-link"
+  propertyId={property.property_id}
+  UnsavedComponent={<i className="far fa-heart" />}
+  SavedComponent={<i className="fas fa-heart" />}
+/>
 ```
