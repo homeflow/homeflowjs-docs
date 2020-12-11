@@ -3,10 +3,10 @@ id: modals
 title: Modals
 ---
 
-HomeflowJS includes its own modal system. To use it, first include en empty div on each page for modals to be rendered into:
+HomeflowJS includes its own modal system. To use it, first include an empty div on each page for modals to be rendered into:
 
 ```html
-<div id="modal-container"></div>
+<div id="js-modal-container"></div>
 ```
 
 Then import your modals and render them as children of the `Modal` component from `homeflowjs`. You must also provide a `path` prop that will cause them to render:
@@ -25,7 +25,7 @@ const Modals = () => (
 
 ReactDOM.render(
   withHomeflowState(Modals),
-  document.getElementById('modal-container'),
+  document.getElementById('js-modal-container'),
 );
 ```
 
