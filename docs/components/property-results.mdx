@@ -21,6 +21,12 @@ import { PropertiesResults } from 'homeflowjs/properties';
 />
 ```
 
+### Props
+
+- `GridItem` - Component to render for each property in `grid` view.
+- `ListItem` - Component to render for each property in `list` view.
+- `defaultView` - The default view to display when no hash is present.
+
 ## `LoadMoreButton`
 
 If you wish to control pagination asynchronously using a button, you can use the `LoadMoreButton` component. It will automatically disappear once there are no more properties to render.
@@ -47,3 +53,35 @@ import { SavePropertyButton } from 'homeflowjs/properties';
   SavedComponent={<i className="fas fa-heart" />}
 />
 ```
+
+### Props
+
+- `propertyId` - The ID of the property.
+- `UnsavedComponent` - component or JSX to render when the property is not currently saved.
+- `SavedComponent` - component or JSX to render when the property is saved.
+
+## `SortOrderSelect`
+
+```jsx
+import { SortOrderSelect } from 'homeflowjs/properties';
+
+<SortOrderSelect reactSelect>
+  <option value="most-expensive-first">
+    Price high &gt; low
+  </option>
+  <option value="least-expensive-first">
+    Price low &gt; high
+  </option>
+  <option value="most-recent-first">
+    Most recent first
+  </option>
+  <option value="most-recently-updated-first">
+    Most recently updated first
+  </option>
+</SortOrderSelect>
+```
+
+### Props
+
+- `reactSelect` - renders a decorated dropdown instead of a regular `<select>` if present.
+- `defaultSort` - The default sort order.
