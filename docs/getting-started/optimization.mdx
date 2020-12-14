@@ -1,0 +1,45 @@
+---
+id: optimization
+title: Optimization
+sidebar_label: Optimization
+---
+
+## Code-splitting
+
+See the section on [entry points](getting-started/entry-points.mdx) on how to use code-splitting to organise your JavaScript into page-specific bundles (this is probably the most important single optimization).
+
+## Lazy-loading
+
+You can use Webpack's dynamic imports to lazy-load parts of your code that are significant in size or if only required after some kind of user interaction.
+
+If the element you intend to lazy-load is a React component, you can use [`React.lazy`](https://reactjs.org/docs/code-splitting.html#reactlazy).
+
+```jsx
+import React, { Suspense } from 'react';
+
+const MyComponent = React.lazy(() => import('../my-component'));
+
+const MyLazyComponent = (props) => (
+  <Suspense fallback={<div>Loading...</div>}>
+    <MyComponent {...props} />
+  </Suspense>
+);
+```
+
+For other JavaScript code, you can use a regular [dynamic import](https://reactjs.org/docs/code-splitting.html#import):
+
+```jsx
+import('./math').then(math => {
+  console.log(math.add(16, 26));
+});
+```
+
+When Webpack compiles your code, it will automatically split the lazy import into it's own bundle and load this asynchronously when required.
+
+## Tree-shaking
+
+Assuming you have built your theme using the theme_boilerplate, [tree-shaking](https://webpack.js.org/guides/tree-shaking/) should be enabled for production builds.
+
+Webpack will remove dead code by analyzing the `import` statements in your files.
+
+Sometimes issues can occur when files have side-effects. You can mark a file as having side-effects by following the instructions [here](https://webpack.js.org/guides/tree-shaking/).

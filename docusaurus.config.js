@@ -8,6 +8,7 @@ module.exports = {
   organizationName: 'Homeflow',
   projectName: 'homeflowjs-docs',
   themeConfig: {
+    sidebarCollapsible: false,
     prism: {
       theme: require('prism-react-renderer/themes/github'),
       darkTheme: require('prism-react-renderer/themes/vsDark'),
