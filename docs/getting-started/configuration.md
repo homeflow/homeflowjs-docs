@@ -23,3 +23,16 @@ const lettingsPrices = HomeflowJS.get('lettings_prices');
 ```
 
 For compatibility with older themes, `Ctesius.addConfig` and `Ctesius.getConfig` are available as aliases to `HomeflowJS.set` and `HomeflowJS.get` (although new themes should only use the new `HomeflowJS` object).
+
+## `hfInitialize`
+
+`hfInitialize` is a function that must be called as early as possible in **each entry point**. We suggest placing this at the top of a `global.jsx` file to be imported into each entry bundle.
+
+```jsx
+// global.jsx
+import { hfInitialize } from 'homeflowjs';
+
+hfInitialize();
+```
+
+This function will attach some additional methods to give you low-level access to various state. See the section on [Redux](components/../redux.md) for more detail.
