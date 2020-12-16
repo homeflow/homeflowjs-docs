@@ -283,3 +283,17 @@ const NewerThanSelect = () => (
   </GenericSearchField>
 )
 ```
+
+## `SaveSearchButton`
+
+A button to add or remove (toggle) the current search to the user's saved searches.
+
+```jsx
+import { SaveSearchButton } from 'homeflowjs/search';
+
+<SaveSearchButton
+  className="fav-link"
+  UnsavedComponent={<i className="far fa-heart" />}
+  SavedComponent={<i className="fas fa-heart" />}
+/>
+```
