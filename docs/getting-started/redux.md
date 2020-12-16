@@ -8,7 +8,7 @@ HomeflowJS uses Redux to manage state.
 
 ## `withHomeflowState`
 
-You should wrap any top-level components in the `withHomeflowState` HOC before rendering them:
+You should wrap any top-level React components in the `withHomeflowState` HOC before rendering them:
 
 ```jsx
 import React from 'react';
@@ -61,7 +61,7 @@ HomeflowJS.dispatch({ type: 'SET_SEARCH_FIELD', payload: { minBeds: 2 } });
 
 ## `HomeflowJS.subscribe`
 
-Call `HomeflowJS.subscribe(listener)` to be updated whenever an action is dispatched.
+Call `HomeflowJS.subscribe(listener)` to be updated whenever state changes.
 
 ```jsx
 const minBeds = HomeflowJS.getState().search.minBeds;
