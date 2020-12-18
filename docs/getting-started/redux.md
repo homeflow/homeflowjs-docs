@@ -43,31 +43,31 @@ export default connect(
 )(MyCustomComponent)
 ```
 
-## `HomeflowJS.getState`
+## `Homeflow.getState`
 
-If you need to access part of the current state, you can call `HomeflowJS.getState()`.
+If you need to access part of the current state, you can call `Homeflow.getState()`.
 
 ```jsx
-const minBeds = HomeflowJS.getState().search.minBeds;
+const minBeds = Homeflow.getState().search.minBeds;
 ```
 
-## `HomeflowJS.dispatch`
+## `Homeflow.dispatch`
 
-If you need to update some state, you can call `HomeflowJS.dispatch(action)`.
+If you need to update some state, you can call `Homeflow.dispatch(action)`.
 
 ```jsx
-HomeflowJS.dispatch({ type: 'SET_SEARCH_FIELD', payload: { minBeds: 2 } });
+Homeflow.dispatch({ type: 'SET_SEARCH_FIELD', payload: { minBeds: 2 } });
 ```
 
-## `HomeflowJS.subscribe`
+## `Homeflow.subscribe`
 
-Call `HomeflowJS.subscribe(listener)` to be updated whenever state changes.
+Call `Homeflow.subscribe(listener)` to be updated whenever state changes.
 
 ```jsx
-const minBeds = HomeflowJS.getState().search.minBeds;
+const minBeds = Homeflow.getState().search.minBeds;
 
-HomeflowJS.subscribe(() => {
-  const state = HomeflowJS.getState();
+Homeflow.subscribe(() => {
+  const state = Homeflow.getState();
 
   if (state.search.minBeds !== minBeds) {
     console.log('Min beds state has changed.');
@@ -77,7 +77,7 @@ HomeflowJS.subscribe(() => {
 
 ## `hfDispatch`
 
-`hfDispatch` is provided as a wrapper for `HomeflowJS.dispatch` that calls action creators. This can help to avoid bugs caused by trying to pass action objects directly:
+`hfDispatch` is provided as a wrapper for `Homeflow.dispatch` that calls action creators. This can help to avoid bugs caused by trying to pass action objects directly:
 
 ```jsx
 import { hfDispatch } from 'homeflowjs';
