@@ -7,7 +7,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 ## Default
 
-HomeflowJS includes a default user profile modal to allow users to register, sign in, and manage their saved properties and searches.
+HomeflowJS includes a default user profile modal to allow users to register, sign in, and manage their saved properties and searches. It has a fixed layout, but can be styled to fit the theme using CSS.
 
 To include it, simply pass `withDefaultUserProfile` as a prop to the `Modal` component:
 
@@ -21,8 +21,40 @@ This will create routes to render the below modal for any fragment identifier be
 
 <img alt="Default user profile" src={useBaseUrl('img/default-user-profile.png')} />
 
-See the section on modals for more info.
+See the section on [modals](components/modals.mdx) for more info.
 
 If you need more flexibility in creating user profile elements, you can use the components below.
 
-##
+## `UserRegisterForm`
+
+Wraps all fields of your register form and handles validation and creation of new user on submit.
+
+```jsx
+import { UserRegisterForm } from 'homeflowjs/user';
+
+const RegisterForm = () => (
+  <UserRegisterForm>
+    {/* user fields and other JSX goes here */}
+
+    <button type="submit">Register</button>
+  </UserRegisterForm>
+);
+```
+
+## `UserInput`
+
+Creates an input for creating or editing a user field.
+
+```jsx
+import { UserRegisterForm, UserInput } from 'homeflowjs/user';
+
+const RegisterForm = () => (
+  <UserRegisterForm>
+    <UserInput name="first_name" />
+    <UserInput name="last_name" />
+    <UserInput name="email" />
+    <UserInput name="password" />
+    <UserInput name="password_confirmation" />
+  </UserRegisterForm>
+);
+```
