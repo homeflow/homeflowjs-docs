@@ -58,3 +58,23 @@ const RegisterForm = () => (
   </UserRegisterForm>
 );
 ```
+
+## `UserSignInForm`
+
+Form for logging a user in. See example below for full usage with `SignInInput` components.
+
+## `SignInInput`
+
+```jsx
+import { UserSignInForm } from 'homeflowjs/user';
+
+const SignInForm = () => (
+  <UserSignInForm>
+    <label>Email</label>
+    <SignInInput name="email" required />
+
+    <label>Password</label>
+    <SignInInput name="password" required />
+  </UserSignInForm>
+)
+```
