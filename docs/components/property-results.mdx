@@ -3,18 +3,18 @@ id: property-results
 title: Property Results
 ---
 
-## `PropertiesResults`
+## `PropertyResults`
 
-The `PropertiesResults` component will render search results to the page.
+The `PropertyResults` component will render search results to the page.
 
 It will render each property as one of the item components provided depending on whether the hash is `#/grid` or `#/list`. These components will receive the `property` as a prop.
 
 You can also specify a `defaultView` prop as either 'grid', 'list' or 'map' for that view to be rendered when one of the other hashes isn't present.
 
 ```jsx
-import { PropertiesResults } from 'homeflowjs/properties';
+import { PropertyResults } from 'homeflowjs/properties';
 
-<PropertiesResults
+<PropertyResults
   GridItem={GridItem}
   ListItem={ListItem}
   defaultView="grid"
