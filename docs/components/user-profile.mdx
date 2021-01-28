@@ -23,7 +23,7 @@ This will create routes to render the below modal for any fragment identifier be
 
 See the section on [modals](components/modals.mdx) for more info.
 
-If you need more flexibility in creating user profile elements, you can use the components below.
+The default user profile modal can be customised using CSS, but if you need more flexibility in creating user profile elements, you can use the components below.
 
 ## `UserRegisterForm`
 
@@ -52,9 +52,11 @@ const RegisterForm = () => (
   <UserRegisterForm>
     <UserInput name="first_name" />
     <UserInput name="last_name" />
-    <UserInput name="email" />
-    <UserInput name="password" />
-    <UserInput name="password_confirmation" />
+    <UserInput name="email" required />
+    <UserInput name="password" required />
+    <UserInput name="password_confirmation" required />
+
+    <button type="submit">Register</button>
   </UserRegisterForm>
 );
 ```
@@ -73,6 +75,26 @@ const SignInForm = () => (
 
     <label>Password</label>
     <SignInInput name="password" required />
+
+    <button type="submit">Sign In</button>
   </UserSignInForm>
+)
+```
+
+## `UserEditForm`
+
+Form to allow a user to edit their profile.
+
+```jsx
+import { UserEditForm, UserInput } from 'homeflowjs/user';
+
+const SignInForm = () => (
+  <UserEditForm>
+    <UserInput name="first_name" />
+    <UserInput name="last_name" />
+    {/* etc */}
+
+    <button type="submit">Update</button>
+  </UserEditForm>
 )
 ```

@@ -24,6 +24,14 @@ const lettingsPrices = Homeflow.get('lettings_prices');
 
 For compatibility with older themes, `Ctesius.addConfig` and `Ctesius.getConfig` are available as aliases to `Homeflow.set` and `Homeflow.get` (although new themes should only use the new `Homeflow` object).
 
+You should also add this partial to the _bottom of the `<body>` elements **on every page**:
+
+```html
+{% include 'homeflow_core/body %}
+```
+
+This contains things like custom styles loaded from the agent's admin area.
+
 ## `hfInitialize`
 
 `hfInitialize` is a function that must be called as early as possible in **each entry point**. We suggest placing this at the top of a `global.jsx` file to be imported into each entry bundle.
