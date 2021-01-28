@@ -13,6 +13,7 @@ module.exports = {
       'components/property-results',
       'components/modals',
       'components/user-profile',
+      'components/notifications',
     ],
   },
 };
