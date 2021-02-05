@@ -9,12 +9,12 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 HomeflowJS includes a default user profile modal to allow users to register, sign in, and manage their saved properties and searches. It has a fixed layout, but can be styled to fit the theme using CSS.
 
-To include it, simply pass `withDefaultUserProfile` as a prop to the `Modal` component:
+To include it, simply pass `withUserProfile` as a prop to the `Modal` component:
 
 ```jsx
 import { Modal } from 'homeflowjs';
 
-<Modal withDefaultUserProfile />
+<Modal withUserProfile />
 ```
 
 This will create routes to render the below modal for any fragment identifier beginning with `#/user`.
@@ -97,4 +97,14 @@ const SignInForm = () => (
     <button type="submit">Update</button>
   </UserEditForm>
 )
+```
+
+## `ForgottenPasswordForm`
+
+Form allowing the user to reset their password.
+
+```jsx
+import { ForgottenPassword } from 'homflowjs/user';
+
+<ForgottenPassword />
 ```

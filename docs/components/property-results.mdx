@@ -18,14 +18,16 @@ import { PropertyResults } from 'homeflowjs/properties';
   GridItem={GridItem}
   ListItem={ListItem}
   defaultView="grid"
+  infiniteScroll
 />
 ```
 
 ### Props
 
-- `GridItem` - Component to render for each property in `grid` view.
-- `ListItem` - Component to render for each property in `list` view.
-- `defaultView` - The default view to display when no hash is present.
+- `GridItem` (required) - Component to render for each property in `grid` view.
+- `ListItem` (required) - Component to render for each property in `list` view.
+- `defaultView` - The default view to display when no hash is present. Default is `list`.
+- `infiniteScroll` enables infinite scroll (automatically loading the next page of results when the user scrolls to the bottom of the results container). Default is `false`.
 
 ## `LoadMoreButton`
 
