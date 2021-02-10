@@ -14,6 +14,10 @@ module.exports = {
       'components/modals',
       'components/user-profile',
       'components/notifications',
+      'components/maps',
+    ],
+    'Guides': [
+      'guides/maps',
     ],
   },
 };

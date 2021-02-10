@@ -1,0 +1,21 @@
+---
+id: maps
+title: Maps
+---
+
+## Property Results Map
+
+You must define a template with an id of `property-map-popup-template` for Leaflet to use as a popup when a property marker is clicked.
+
+```html
+<script id="property-map-popup-template" type="text/template">
+  <p>
+    <img style='width:120px;' src='<%= property.photo %>'/><br/>
+    <% if (property.bedrooms) { %>
+      <%= property.bedrooms %> bed -
+    <% } %>
+    <%= property.price %> <br/>
+    <a href='<%= property.property_url %>'><%= property.display_address %></a>
+  </p>
+</script>
+```
