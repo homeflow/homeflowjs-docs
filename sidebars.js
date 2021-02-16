@@ -18,6 +18,7 @@ module.exports = {
     ],
     'Guides': [
       'guides/maps',
+      'guides/routing',
     ],
   },
 };

@@ -1,0 +1,83 @@
+You can use React Router to render links and routes to add interactivity to your pages.
+
+Here is an example of how you might render some tabs to allow the user to switch between a normal property map and streetview on the property show page:
+
+In your HTML:
+
+```
+<div id="js-property-map-tabs"></div>
+
+<div id="js-property-map"></div>
+```
+
+In your JS:
+
+```jsx
+import React from 'react';
+import ReactDOM from 'react-dom';
+import {
+  HashRouter as Router,
+  Switch,
+  Route,
+  NavLink,
+} from 'react-router-dom';
+
+import { withHomeflowState } from 'homeflowjs';
+import { PropertyMap, PropertyStreetview } from 'homeflowjs/properties';
+
+const PropertyMapTabs = () => (
+  <Router>
+    <ul className="tabs--tabs">
+      <li>
+        <NavLink
+          activeClassName="active"
+          to="/"
+          exact
+        >
+          Map
+        </NavLink>
+      </li>
+
+      <li>
+        <NavLink
+          activeClassName="active"
+          to="/streetview"
+          exact
+        >
+          Streetview
+        </NavLink>
+      </li>
+    </ul>
+  </Router>
+);
+
+const CustomPropertyMap = () => (
+  <Router>
+    <Switch>
+      <Route path="/streetview">
+        <PropertyStreetview className="property-streetview" />
+      </Route>
+
+      <Route path="/">
+        <PropertyMap
+          custom="simple_bw"
+        />
+      </Route>
+    </Switch>
+  </Router>
+);
+
+window.addEventListener('DOMContentLoaded', () => {
+  ReactDOM.render(
+    withHomeflowState(PropertyMapTabs),
+    document.getElementById('js-property-map-tabs'),
+  );
+
+  ReactDOM.render(
+    withHomeflowState(CustomPropertyMap),
+    document.getElementById('js-property-map'),
+  );
+});
+```
+
+The value passed for the `activeClassName` prop on each `NavLink` will be added as a class to the tab _only_ when the given route is active. This allows you to style active tabs differently.
