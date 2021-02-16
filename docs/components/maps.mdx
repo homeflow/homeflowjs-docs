@@ -5,17 +5,66 @@ title: Maps
 
 ## Property Results Map
 
-You must define a template with an id of `property-map-popup-template` for Leaflet to use as a popup when a property marker is clicked.
+The property results map will be included by default with the `PropertyResults` component, on the route `#/map`.
+
+If you wish to render the map separately (like if you want to render the map and results side-by-side), pass the `noMap` prop to `PropertyResults` and render the `PropertiesMap` yourself:
+
+```jsx
+import { PropertiesMap } from 'homeflowjs/properties';
+
+const myPropertiesMap = () => (
+  <PropertiesMap />
+);
+```
+
+Whether you render the map yourself or let `PropertyResults` do so, you _must_ define a template with an id of `property-map-popup-template` somewhere in your markup for Leaflet to use as a popup when a property marker is clicked.
+
+As much of the maps code depends on older libraries, this template uses [lodash.template](https://lodash.com/docs/4.17.15#template) instead of React.
+
+Here is a simple example:
 
 ```html
 <script id="property-map-popup-template" type="text/template">
   <p>
-    <img style='width:120px;' src='<%= property.photo %>'/><br/>
+    <img style="width:120px;" src="<%= property.photo %>" />
+    <br/>
     <% if (property.bedrooms) { %>
       <%= property.bedrooms %> bed -
     <% } %>
     <%= property.price %> <br/>
-    <a href='<%= property.property_url %>'><%= property.display_address %></a>
+    <a href="<%= property.property_url %>"><%= property.display_address %></a>
   </p>
 </script>
+```
+
+## `PropertyMap`
+
+The `PropertyMap` component will render a map for a single property on the property show page.
+
+```jsx
+import { withHomeflowState } from 'homeflowjs';
+import { PropertyMap } from 'homeflowjs/properties';
+
+ReactDOM.render(
+  withHomeflowState(PropertyMap),
+  document.getElementById('js-property-map'),
+);
+```
+
+| Prop            | Type    | Description                                                            |
+|-----------------|---------|------------------------------------------------------------------------|
+|`custom`         |String   |Pass "simple_bw" to render a simplified grayscale map.                  |
+
+## `PropertyStreetview`
+
+Renders a google streetview element for the property.
+
+```jsx
+import { withHomeflowState } from 'homeflowjs';
+import { PropertyStreetview } from 'homeflowjs/properties';
+
+ReactDOM.render(
+  withHomeflowState(PropertyStreetview),
+  document.getElementById('js-property-streetview'),
+);
 ```

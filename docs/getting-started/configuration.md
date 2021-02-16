@@ -24,7 +24,7 @@ const lettingsPrices = Homeflow.get('lettings_prices');
 
 For compatibility with older themes, `Ctesius.addConfig` and `Ctesius.getConfig` are available as aliases to `Homeflow.set` and `Homeflow.get` (although new themes should only use the new `Homeflow` object).
 
-You should also add this partial to the _bottom of the `<body>` elements **on every page**:
+You should also add this partial to the _bottom_ of the `<body>` element **on every page**:
 
 ```html
 {% include 'homeflow_core/body %}

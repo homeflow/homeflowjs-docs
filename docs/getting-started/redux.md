@@ -6,6 +6,31 @@ sidebar_label: Redux
 
 HomeflowJS uses Redux to manage state.
 
+## Structure
+
+The Redux data is structured like this:
+
+```js
+{
+  app: {}, // general app state like theme preferences and settings, loading etc
+  search: {
+    currentSearch: {}, // data for the current search
+    savedSearches: [], // the user's saved searches
+  },
+  user: {
+    currentUser: {}, // the user loaded from ther server after they've registered or signed in
+    localUser: {}, // local user data to send to the server when they register or edit their profile
+    userCredentials: {} // email and password when registering or signing in
+  },
+  properties: {
+    properties: [], // property results from the current search
+    savedProperties: [], // the user's saved properties
+  }
+}
+```
+
+You can use [Redux Dev Tools](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=en) to inspect the state in the browser.
+
 ## `withHomeflowState`
 
 You should wrap any top-level React components in the `withHomeflowState` HOC before rendering them:
