@@ -41,6 +41,8 @@ Here is a simple example:
 
 The `PropertyMap` component will render a map for a single property on the property show page.
 
+By default it will render a google map (ensure the agent has a `google_maps_api_key` set in admin if you use this). Pass the prop `leaflet` to render a Leaflet map instead.
+
 ```jsx
 import { withHomeflowState } from 'homeflowjs';
 import { PropertyMap } from 'homeflowjs/properties';
@@ -53,7 +55,8 @@ ReactDOM.render(
 
 | Prop            | Type    | Description                                                            |
 |-----------------|---------|------------------------------------------------------------------------|
-|`custom`         |String   |Pass "simple_bw" to render a simplified grayscale map.                  |
+|`custom`         |String   |Pass "simple_bw" to render a simplified grayscale goodle map.           |
+|`leaflet         |Boolean  |Uses Leaflet instead of Google to render the map.                       |
 
 ## `PropertyStreetview`
 
