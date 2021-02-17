@@ -5,7 +5,7 @@ module.exports = {
       'getting-started/configuration',
       'getting-started/entry-points',
       'getting-started/redux',
-      'getting-started/optimization',
+      'getting-started/optimisation',
       'getting-started/retrofitting',
     ],
     'Components': [
@@ -17,7 +17,6 @@ module.exports = {
       'components/maps',
     ],
     'Guides': [
-      'guides/maps',
       'guides/routing',
     ],
   },

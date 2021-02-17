@@ -19,7 +19,7 @@ const myPropertiesMap = () => (
 
 Whether you render the map yourself or let `PropertyResults` do so, you _must_ define a template with an id of `property-map-popup-template` somewhere in your markup for Leaflet to use as a popup when a property marker is clicked.
 
-As much of the maps code depends on older libraries, this template uses [lodash.template](https://lodash.com/docs/4.17.15#template) instead of React.
+As much of the maps code depends on older libraries and legacy code, this template uses [lodash.template](https://lodash.com/docs/4.17.15#template) instead of React.
 
 Here is a simple example:
 
@@ -37,6 +37,25 @@ Here is a simple example:
 </script>
 ```
 
+You can optionally set the type of layer to use on the Leaflet map. The default is the normal leaflet map layer, but you can pass the string `google` to use the google maps layer:
+
+```js
+Homeflow.set('leaflet_layer', 'google');
+```
+
+If you use `google`, make sure the agency has a `google_maps_api_key` set up in their admin area.
+
+If you need to render a custom layer, you can instead pass a callback function (it's important you pass this as a function that _returns_ the tile layer instead of trying to pass the L.tileLayer object itself):
+
+```js
+Homeflow.set('leaflet_layer', function() {
+  return new L.tileLayer('https://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}&hl=en', {
+      maxZoom: 20,
+      subdomains:['mt0','mt1','mt2','mt3']
+  })
+});
+```
+
 ## `PropertyMap`
 
 The `PropertyMap` component will render a map for a single property on the property show page.
@@ -49,14 +68,14 @@ import { PropertyMap } from 'homeflowjs/properties';
 
 ReactDOM.render(
   withHomeflowState(PropertyMap),
-  document.getElementById('js-property-map'),
+  document.getElementById('property-map'),
 );
 ```
 
 | Prop            | Type    | Description                                                            |
 |-----------------|---------|------------------------------------------------------------------------|
-|`custom`         |String   |Pass "simple_bw" to render a simplified grayscale goodle map.           |
-|`leaflet         |Boolean  |Uses Leaflet instead of Google to render the map.                       |
+|`custom`         |String   |Pass "simple_bw" to render a simplified grayscale google map.           |
+|`leaflet`        |Boolean  |Uses Leaflet instead of Google to render the map.                       |
 
 ## `PropertyStreetview`
 
@@ -68,6 +87,6 @@ import { PropertyStreetview } from 'homeflowjs/properties';
 
 ReactDOM.render(
   withHomeflowState(PropertyStreetview),
-  document.getElementById('js-property-streetview'),
+  document.getElementById('property-streetview'),
 );
 ```

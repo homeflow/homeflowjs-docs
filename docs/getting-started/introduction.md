@@ -23,14 +23,15 @@ Run `yarn start` to start Webpack in watch mode.
 
 ## React and Redux
 
-HomeflowJS makes use of [React](https://reactjs.org/) for UI components and [Redux](https://redux.js.org/) for managing state. You should ensure `react`, `react-dom`, `redux` and `react-redux` are included as dependencies in the theme (if you're using the theme_boilerplate project these should already be included).
+HomeflowJS makes use of [React](https://reactjs.org/) for UI components and [Redux](https://redux.js.org/) for managing state. You should ensure `react`, `react-dom`, `redux`, `react-redux` and `react-router-dom` are included as dependencies in the theme (if you're using the theme_boilerplate project these should already be included).
 
 Please use the links below for documentation on these libraries:
 
 - [React](https://reactjs.org/docs/getting-started.html)
 - [Redux](https://redux.js.org/introduction/getting-started)
 - [React Redux](https://react-redux.js.org/introduction/quick-start)
+- [React Router](https://reactrouter.com/web/guides/quick-start)
 
 ### Design
 
-Homeflow sites are **not** single-page applications. Routing is generally handled server-side, and Liquid is used to inject dynamic data into HTML templates. React can therefore be used to render as much of a particular page as you like, either by rendering individual components into separate DOM nodes or by rendering an entire page as a React app. Seperately rendered components will still be connected to the Redux store (see the section on Redux in the sidebar for more detail).
+Homeflow sites are **not** single-page applications. Routing is generally handled server-side, and Liquid is used to inject dynamic data into HTML templates. React can therefore be used to render as much of a particular page as you like, either by rendering individual components into separate DOM nodes or by rendering an entire page as a React app (bearing in mind any impact on SEO or layout shift while loading). Seperately rendered components will still be connected to the Redux store (see the section on Redux in the sidebar for more detail).
