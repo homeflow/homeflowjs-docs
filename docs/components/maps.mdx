@@ -95,6 +95,10 @@ ReactDOM.render(
 
 Renders a leaflet map of the agency's branch locations for the branches index page. Optionally pass a `CustomPopup` component as a prop to use this when a marker is clicked instead of the default. The `CustomPopup` will receive the branch as a prop.
 
+:::note
+Remember to set a `height` on the container DOM node you are rendering the map into or it will not be visible._
+:::
+
 ```jsx
 import { BranchesMap } from 'homeflowjs/branches';
 
