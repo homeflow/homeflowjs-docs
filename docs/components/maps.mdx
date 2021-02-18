@@ -19,7 +19,7 @@ const myPropertiesMap = () => (
 
 Whether you render the map yourself or let `PropertyResults` do so, you _must_ define a template with an id of `property-map-popup-template` somewhere in your markup for Leaflet to use as a popup when a property marker is clicked.
 
-As much of the maps code depends on older libraries and legacy code, this template uses [lodash.template](https://lodash.com/docs/4.17.15#template) instead of React.
+As much of the code for the property results map depends on older libraries and legacy JS, this template uses [lodash.template](https://lodash.com/docs/4.17.15#template) instead of React.
 
 Here is a simple example:
 
@@ -88,5 +88,34 @@ import { PropertyStreetview } from 'homeflowjs/properties';
 ReactDOM.render(
   withHomeflowState(PropertyStreetview),
   document.getElementById('property-streetview'),
+);
+```
+
+## `BranchesMap`
+
+Renders a leaflet map of the agency's branch locations for the branches index page. Optionally pass a `CustomPopup` component as a prop to use this when a marker is clicked instead of the default. The `CustomPopup` will receive the branch as a prop.
+
+```jsx
+import { BranchesMap } from 'homeflowjs/branches';
+
+const MyCustomPopup = () => (
+  <div className="hfjs-branch-marker-popup">
+    <h2>{branch.name}</h2>
+    <p>{branch.address}</p>
+
+    {branch.sales_enabled && (
+      <a href={`${branch.branch_url}/sales`}>View all properties for sale &gt;</a>
+    )}
+
+    <br />
+
+    {branch.lettings_enabled && (
+      <a href={`${branch.branch_url}/lettings`}>View all properties to let &gt;</a>
+    )}
+  </div>
+);
+
+const MyBranchesMap = () => (
+  <BranchesMap CustomPopup={CustomPopup} />
 );
 ```
