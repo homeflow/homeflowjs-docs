@@ -74,8 +74,8 @@ ReactDOM.render(
 
 | Prop            | Type    | Description                                                            |
 |-----------------|---------|------------------------------------------------------------------------|
+|`google `        |Boolean  |Use Google Maps instead of Leaflet to render the map.                   |
 |`custom`         |String   |Pass "simple_bw" to render a simplified grayscale google map.           |
-|`leaflet`        |Boolean  |Uses Leaflet instead of Google to render the map.                       |
 
 ## `PropertyStreetview`
 
@@ -119,3 +119,8 @@ const MyBranchesMap = () => (
   <BranchesMap CustomPopup={CustomPopup} />
 );
 ```
+
+| Prop            | Type    | Description                                                                          |
+|-----------------|---------|--------------------------------------------------------------------------------------|
+|`CustomPopup`    |Component|Component to render as a popup when markers are clicked                               |
+|`google `        |Boolean  |Use a Google map layer on top of the Leaflet map (requires Google API key to be set)  |
