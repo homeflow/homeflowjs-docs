@@ -1,0 +1,76 @@
+---
+id: forms
+title: Forms
+---
+
+## Authenticity Tokens
+
+Form submissions on Homeflow websites are protected against [cross-site request forgery](https://en.wikipedia.org/wiki/Cross-site_request_forgery) through the use of authenticity tokens.
+
+The server provides a token that is made available as a liquid variable, Homeflow config and Redux state:
+
+````
+{{ form_authenticity_token }}
+Homeflow.get('authenticityToken');
+store.getState().app.authenticityToken;
+````
+
+You should ensure this token is included in every form submission.
+
+If your form is a React component, provide the token to your form using `mapStateToProps`:
+
+```jsx
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
+
+const MyForm = ({ authenticityToken }) => {
+  const [email, setEmail] = useState('');
+
+  const handleSubmit = () => {
+    fetch('/form_submissions', {
+      method: 'POST',
+      body: JSON.stringify({
+        form_submission: { email },
+        authenticity_token: authenticityToken,
+      }),
+    });
+  }
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <h2>Sign up for our newsletter!</h2>
+
+      <input
+        name="email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        placeholder="Email"
+      />
+
+      <button type="submit">Submit</button>
+    </form>
+  );
+};
+
+const mapStateToProps = (state) => ({
+  authenticityToken: state.app.authenticityToken,
+});
+
+export default connect(mapStateToProps)(MyForm)
+```
+
+If it's a regular HTML form in a liquid template, simply include the token using a hidden field:
+
+```html
+<form action="/form_submissions">
+  <input type="hidden" name="authenticity_token" value="{{ form_authenticity_token }}" />
+
+  <input name="email" placeholder="email" />
+
+  <button type="submit">Submit</button>
+</form>
+```
+
+## Recaptcha
+
+Coming soon.

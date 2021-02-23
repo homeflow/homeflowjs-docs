@@ -18,6 +18,8 @@ module.exports = {
     ],
     'Guides': [
       'guides/routing',
+      'guides/forms',
+      'guides/cookie-consent',
     ],
   },
 };
