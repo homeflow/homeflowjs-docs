@@ -1,0 +1,72 @@
+---
+id: carousels
+title: Carousels
+---
+
+We recommend using a lightweight React carousel with minimal dependencies.
+
+For example, [React Responsive Carousel](https://www.npmjs.com/package/react-responsive-carousel) is only 8.4kb after gzipping, and should be customisable enough for most applications.
+
+Begin by making the slide images available in your JS code by creating an array and using `Homeflow.set()` in a liquid template (the example here is for a carousel for the homepage):
+
+```html
+<script>
+  Homeflow.set('carouselItems', [
+    {% for item in agency.carousel_items %}
+    {
+      linkUrl: '{{ item.link_url }}',
+      imageLarge: '{{ item.image | url_for_generic_image: "1920x_" }}',
+      imageMedium: '{{ item.image | url_for_generic_image: "414x720" }}',
+      imageSmall: '{{ item.image | url_for_generic_image: "320x568" }}',
+      title: '{{ item.title }}',
+      standfirst: '{{ item.standfirst }}',
+    },
+    {% endfor %}
+  ]);
+</script>
+```
+
+You could create your React carousel:
+
+```jsx
+import React from 'react';
+import { Carousel } from 'react-responsive-carousel';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
+
+const HomeCarousel = ({ items }) => (
+  <Carousel
+    autoPlay
+    interval={8000}
+    renderThumbs={() => null}
+  >
+    {items.map(item => (
+      <div key={item.imageSmall} className="slide" style={{ height: '100vh' }}>
+        <img
+          className="lazyload"
+          data-srcset={`
+            ${item.imageLarge} 1920w,
+            ${item.imageTiny} 768w,
+          `}
+          data-sizes="auto"
+          alt={item.title}
+          style={{ height: '100%', width: '100%', objectFit: 'cover' }}
+        />
+        {item.title && <p className="legend">{item.title}</p>}
+      </div>
+    ))}
+  </Carousel>
+);
+
+export default HomeCarousel;
+```
+
+...and pass the items as a prop when you render it:
+
+```jsx
+const items = Homeflow.get('carouselItems');
+
+ReactDOM.render(
+  <HomeCarousel items={items} />,
+  document.getElementById('home-carousel'),
+);
+```

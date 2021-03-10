@@ -17,9 +17,12 @@ module.exports = {
       'components/maps',
     ],
     'Guides': [
+      'guides/carousels',
       'guides/routing',
       'guides/forms',
       'guides/cookie-consent',
+      'guides/instant-valuation',
+      'guides/booking-calendars',
     ],
   },
 };
