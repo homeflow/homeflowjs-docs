@@ -70,6 +70,8 @@ export default connect(
 
 ## `Homeflow.getState`
 
+While you should always connect your React components to any state you need using `react-redux`, you may find a situation where you need to access the Redux data directly.
+
 If you need to access part of the current state, you can call `Homeflow.getState()`.
 
 ```jsx
