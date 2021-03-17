@@ -11,6 +11,7 @@ module.exports = {
     'Components': [
       'components/property-search',
       'components/property-results',
+      'components/property-show',
       'components/modals',
       'components/user-profile',
       'components/notifications',

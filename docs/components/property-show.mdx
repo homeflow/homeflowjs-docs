@@ -1,0 +1,48 @@
+---
+id: property-show
+title: Property Show
+---
+
+These components will only function correctly on the property show page.
+
+## `BackToSearchButton`
+
+The `BackToSearchButton` component can be included on the property show page to take the user back to their most recent search.
+
+```jsx
+import { BackToSearchButton } from 'homeflowjs/properties';
+
+const BackToSearch = () => (
+  <BackToSearchButton className="back-link">
+    Back to search results
+  </BackToSearchButton>
+);
+```
+
+## `NextPropertyLink`
+
+Renders a link to the next property in the user's most recent search. The component will not render if there are no properties left in the search.
+
+```jsx
+import { NextPropertyLink } from 'homeflowjs/properties';
+
+const NextProperty = () => (
+  <NextPropertyLink className="next-prop">
+    Next property
+  </NextPropertyLink>
+);
+```
+
+## `PreviousPropertyLink`
+
+Renders a link to the previous property in the user's most recent search. The component will not render if the current property is the first in the search results.
+
+```jsx
+import { PreviousPropertyLink } from 'homeflowjs/properties';
+
+const NextProperty = () => (
+  <PreviousPropertyLink className="previous-prop">
+    Next property
+  </PreviousPropertyLink>
+);
+```
