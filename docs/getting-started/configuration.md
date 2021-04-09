@@ -31,9 +31,8 @@ The `_home_carousel_items.ljson` file might look like this:
   -
     linkUrl: {{ item.link_url }}
     imageLarge: {{ item.image | url_for_generic_image: "1920x_" }}
-    imageMedium: {{ item.image | url_for_generic_image: "414x720" }}
-    imageSmall: {{ item.image | url_for_generic_image: "414x720" }}
-    imageTiny: {{ item.image | url_for_generic_image: "320x568" }}
+    imageMedium: {{ item.image | url_for_generic_image: "720x_" }}
+    imageSmall: {{ item.image | url_for_generic_image: "414x_" }}
     title: {{ item.title | yaml_safe }}
     standfirst: {{ item.standfirst | yaml_safe }}
 {% endfor %}

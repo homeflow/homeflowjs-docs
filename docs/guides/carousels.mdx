@@ -7,24 +7,15 @@ We recommend using a lightweight React carousel with minimal dependencies.
 
 For example, [React Responsive Carousel](https://www.npmjs.com/package/react-responsive-carousel) is only 8.4kb after gzipping, and should be customisable enough for most applications.
 
-Begin by making the slide images available in your JS code by creating an array and using `Homeflow.set()` in a liquid template (the example here is for a carousel for the homepage):
+Begin by making the slide images available in your JS by using `Homeflow.set()` and `include_as_json` in a liquid template (the example here is for a carousel for the homepage):
 
 ```html
 <script>
-  Homeflow.set('carouselItems', [
-    {% for item in agency.carousel_items %}
-    {
-      linkUrl: '{{ item.link_url }}',
-      imageLarge: '{{ item.image | url_for_generic_image: "1920x_" }}',
-      imageMedium: '{{ item.image | url_for_generic_image: "414x720" }}',
-      imageSmall: '{{ item.image | url_for_generic_image: "320x568" }}',
-      title: '{{ item.title }}',
-      standfirst: '{{ item.standfirst }}',
-    },
-    {% endfor %}
-  ]);
+  Homeflow.set('carouselItems', {% include_as_json data/home_carousel_items %});
 </script>
 ```
+
+See the [Configuration](getting-started/configuration.mdx) section for more detail on setting data this way.
 
 You could create your React carousel:
 
