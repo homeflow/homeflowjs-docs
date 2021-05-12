@@ -63,6 +63,23 @@ import { SavePropertyButton } from 'homeflowjs/properties';
 - `UnsavedComponent` - component or JSX to render when the property is not currently saved.
 - `SavedComponent` - component or JSX to render when the property is saved.
 
+## `RemoveSavedPropertyButton`
+
+A button/link to _remove_ a saved property from the user's collection. This is mainly useful for custom user profile systems where the user can manage their saved properties.
+
+```jsx
+import { RemoveSavedPropertyButton } from 'homeflowjs/properties';
+
+// this would generally be inside a loop rendering each of the user's saved properties
+<RemoveSavedPropertyButton propertyId={property.property_id}>
+  Remove
+</RemoveSavedPropertyButton>
+```
+
+### Props
+
+- `propertyId` - The ID of the property.
+
 ## `SortOrderSelect`
 
 ```jsx

@@ -47,7 +47,7 @@ ReactDOM.render(
 );
 ```
 
-This will connect them to the various state and actions provided by HomeflowJS to allow them to be updated automatically. You only need a single `withHomeflowState` on the top-level of whatever you are rendering, so if you're rendering a whole page using React, you can simply wrap your top-level component, e.g. `withHomeflowState(MyPage)`, and any children will be connected to the Redux store.
+This will connect them to the various state and actions provided by HomeflowJS to allow them to be updated automatically, as well as wrapping them in a `HashRouter` from `react-router-dom`. You only need a single `withHomeflowState` on the top-level of whatever you are rendering, so if you're rendering a whole page using React, you can simply wrap your top-level component, e.g. `withHomeflowState(MyPage)`, and any children will be connected to the Redux store.
 
 ## Connecting React Components
 

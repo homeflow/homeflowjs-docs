@@ -232,11 +232,11 @@ import { PriceSelect } from 'homeflowjs/search';
 ```jsx
 <PriceSelect
   type="min"
-  priceConfig={
+  priceConfig={{
     salesPrices: [1000, 2000, 3000],
     lettingsPrices: [100, 200, 300],
     lettingsAs: 'pw',
-  }
+  }}
 />
 ```
 
@@ -297,3 +297,38 @@ import { SaveSearchButton } from 'homeflowjs/search';
   SavedComponent={<i className="fas fa-heart" />}
 />
 ```
+
+## `SavedSearch`
+
+Useful in custom user profile systems where the user can manage their saved searches, this renders each search/alert with a dropdown to allow the user to change the alert frequency and links to visit or delete the search.
+
+```jsx
+import React from 'react';
+import { connect } from 'react-redux';
+import { SavedSearch } from 'homeflowjs/search';
+import { uniqueKey } from 'homeflowjs';
+
+const SavedSearches = ({ savedSearches }) => {
+  if (!savedSearches) {
+    return (
+      <p>You have not saved any searches yet.</p>
+    );
+  }
+
+  return (
+    <div>
+      {savedSearches.map(search => <SavedSearch search={search} key={uniqueKey()} />)}
+    </div>
+  );
+};
+
+const mapStateToProps = state => ({
+  savedSearches: state.search.savedSearches,
+});
+
+export default connect(mapStateToProps)(SavedSearches);
+```
+
+### Props
+
+- `search` - The search object.
