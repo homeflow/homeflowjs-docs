@@ -9,6 +9,10 @@ Here is an example of how you might render some tabs to allow the user to switch
 
 In this slightly contrived example we are rendering the tabs and the map into separate adjacent `<div>` elements. Normally you would render a single React component containing both the tabs and the routes, but we wanted to demonstrate how this could work if these elements needed to be rendered in different parts of the page.
 
+:::note
+As long as you wrap your top-level component in the `withHomeflowState()` HOC before rendering, it will automatically be wrapped in a `HashRouter` from React Router, so this can be omitted.
+:::
+
 In your HTML:
 
 ```html
@@ -23,7 +27,6 @@ In your JS:
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {
-  HashRouter as Router,
   Switch,
   Route,
   NavLink,
@@ -33,56 +36,52 @@ import { withHomeflowState } from 'homeflowjs';
 import { PropertyMap, PropertyStreetview } from 'homeflowjs/properties';
 
 const PropertyMapTabs = () => (
-  <Router>
-    <ul className="tabs">
-      <li>
-        <NavLink
-          activeClassName="active"
-          to="/"
-          exact
-        >
-          Map
-        </NavLink>
-      </li>
+  <ul className="tabs">
+    <li>
+      <NavLink
+        activeClassName="active"
+        to="/"
+        exact
+      >
+        Map
+      </NavLink>
+    </li>
 
-      <li>
-        <NavLink
-          activeClassName="active"
-          to="/streetview"
-          exact
-        >
-          Streetview
-        </NavLink>
-      </li>
-    </ul>
-  </Router>
+    <li>
+      <NavLink
+        activeClassName="active"
+        to="/streetview"
+        exact
+      >
+        Streetview
+      </NavLink>
+    </li>
+  </ul>
 );
 
 const CustomPropertyMap = () => (
-  <Router>
-    <Switch>
-      <Route path="/streetview">
-        <PropertyStreetview className="property-streetview" />
-      </Route>
+  <Switch>
+    <Route path="/streetview">
+      <PropertyStreetview className="property-streetview" />
+    </Route>
 
-      <Route path="/">
-        <PropertyMap
-          custom="simple_bw"
-        />
-      </Route>
-    </Switch>
-  </Router>
+    <Route path="/">
+      <PropertyMap
+        custom="simple_bw"
+      />
+    </Route>
+  </Switch>
 );
 
 window.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
     withHomeflowState(PropertyMapTabs),
-    document.getElementById('js-property-map-tabs'),
+    document.getElementById('property-map-tabs'),
   );
 
   ReactDOM.render(
     withHomeflowState(CustomPropertyMap),
-    document.getElementById('js-property-map'),
+    document.getElementById('property-map'),
   );
 });
 ```
