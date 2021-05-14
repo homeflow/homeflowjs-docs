@@ -16,7 +16,9 @@ Webpack bundles can be included via a script tag like this:
 <script src="/asset_bundles/home.bundle.js"></script>
 ```
 
-You should split your code into appropriate bundles using these entry files. We strongly recommend one bundle for each page, as it allows you to only include JavaScript code that is needed for a particular page (without causing issues that can arise from multiple bundles on a page). Below is a table suggesting some entry point names, the pages on which they would be included and the name of the output bundle:
+The theme boilerplate project includes entry points for each major route and configuration to automatically include the correct bundle for a given page from the route. If you need to change this, you can edit the `webpack/scripts.ejs` file.
+
+Below are examples of entry points and their corresponding bundle names:
 
 | Page                                              | Entry                  | Output bundle name          |
 |---------------------------------------------------|------------------------|-----------------------------|
@@ -25,7 +27,7 @@ You should split your code into appropriate bundles using these entry files. We 
 | Property show page (e.g. /properties/:id/sales)   | properties-show.jsx    | properties-show.bundle.js   |
 | Branches index page (e.g. /branches)              | branches-index.js      | branches-index.bundle.js    |
 
-If you need to included a module on multiple pages, you can simple import it into each entry point it is required. For example, you may have a module for a carousel that needs to be included on both the homepage and properties show page. You might import it into the relevant entry point like this (in this example we're imagining the module exports a default function that runs the carousel code):
+If you need to include a module on multiple pages, you can simple import it into each entry point it is required. For example, you may have a module for a carousel that needs to be included on both the homepage and properties show page. You might import it into the relevant entry point like this (in this example we're imagining the module exports a default function that runs the carousel code):
 
 ```js
 import initCarousel from './components/carousel';
@@ -40,14 +42,11 @@ The webpack configuration will automatically split certain third-party modules i
 - redux
 - react-redux
 
-You should ensure the `common.bundle.js` is included **before _your_ bundle** on **every** page:
+The Webpack configuration should include this before the page-specific bundle on each page.
 
-```html
-<script src="common.bundle.js"></script>
-<script src="home.bundle.js"></script>
-```
-
+:::caution
 Apart from the `common` bundle, you should **only ever include a single bundle for each page**. Including multiple bundles that reference Redux or `withHomeflowState` can lead to duplicate redux stores being created (and cause some nasty bugs!)
+:::
 
 The theme boilerplate does include a `global.jsx` file. This should only include modules that are required on every page, **and it should be imported near the top of every entry point file**.
 
