@@ -8,13 +8,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 The webpack configuration included with the `theme_boilerplate` project will automatically perform [code-splitting](https://webpack.js.org/guides/code-splitting/) and output a separate bundle for each file with a `.js` or `.jsx` extension in the `src/entries/` directory.
 
-Each file will result in an ouput bundle following the pattern `[name].bundle.js`. For example, a file in `src/entries/` with a name of `home.jsx` will output a file named `home.bundle.js`.
-
-Webpack bundles can be included via a script tag like this:
-
-```html
-<script src="/asset_bundles/home.bundle.js"></script>
-```
+Each file will result in an ouput bundle following the pattern `[name].bundle.js` in development, and a pattern of `[name].bundle.[hash].js` in production (the hash is added for caching purposes). For example, a file in `src/entries/` with a name of `home.jsx` will output a file named `home.bundle.js` to your `asset_bundles/` directory when running Webpack locally in development mode.
 
 The theme boilerplate project includes entry points for each major route and configuration to automatically include the correct bundle for a given page from the route. If you need to change this, you can edit the `webpack/scripts.ejs` file.
 
@@ -66,3 +60,5 @@ This will run a production build of your assets and display them visually in a b
 <img alt="Webpack bundle analyzer output" src={useBaseUrl('img/bundle-analyzer-output-example.png')} />
 
 You may notice some bundles being created that do not correspond to your entry points (by default these are numbered, e.g. `0.bundle.js`, `1.bundle.js` etc). These bundles are dynamically created by Webpack for optimization. For more information, see the section on Dynamic Imports.
+
+Each bundle should not exceed 100kb after it's been Gzipped (you can check the 'Gzipped' tab in the Webpack Bundle Analyzer sidebar to check this), but they should preferably be much smaller than this. Always be careful when adding NPM packages that they are small and well optimised, and do not include any unnecessary, large dependencies.
