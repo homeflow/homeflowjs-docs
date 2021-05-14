@@ -9,7 +9,7 @@ Here is an example of how you might render some tabs to allow the user to switch
 
 In this slightly contrived example we are rendering the tabs and the map into separate adjacent `<div>` elements. Normally you would render a single React component containing both the tabs and the routes, but we wanted to demonstrate how this could work if these elements needed to be rendered in different parts of the page.
 
-:::note
+:::tip
 As long as you wrap your top-level component in the `withHomeflowState()` HOC before rendering, it will automatically be wrapped in a `HashRouter` from React Router, so this can be omitted.
 :::
 
