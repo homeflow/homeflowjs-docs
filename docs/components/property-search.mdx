@@ -23,7 +23,7 @@ Here is an example of a complete search form:
 ```jsx
 import React from 'react';
 import {
-  SearchForm as HomeflowSearchForm,
+  SearchForm,
   BedroomsSelect,
   ChannelRadioButton,
   LocationInput,
@@ -32,29 +32,27 @@ import {
   TagCheckBox,
 } from 'homeflowjs/search';
 
-const SearchForm = () => (
+const ThemeSearchForm = () => (
   <div className="container jumbotron">
-    <HomeflowSearchForm>
+    <SearchForm>
       <div className="row">
         <h2 className="col-md-6">Search for your new home</h2>
 
         <div className="col-md-3">
           <div className="form-check">
-            <ChannelRadioButton
-              type="sales"
-              inputClass="form-check-input"
-              labelClass="form-check-label"
-            />
+            <label className="home-search__channel" htmlFor="channel-sales">
+              <ChannelRadioButton value="sales" id="channel-sales" />
+              <span>Buy</span>
+            </label>
           </div>
         </div>
 
         <div className="col-md-3">
           <div className="form-check">
-            <ChannelRadioButton
-              type="lettings"
-              inputClass="form-check-input"
-              labelClass="form-check-label"
-            />
+            <label className="home-search__channel" htmlFor="channel-lettings">
+              <ChannelRadioButton value="lettings" id="channel-lettings" />
+              <span>Rent</span>
+            </label>
           </div>
         </div>
       </div>
@@ -113,11 +111,11 @@ const SearchForm = () => (
           <button className="btn btn-primary" type="submit">Search</button>
         </div>
       </div>
-    </HomeflowSearchForm>
+    </SearchForm>
   </div>
 );
 
-export default SearchForm;
+export default ThemeSearchForm;
 ```
 
 Remember when you render your component to wrap it in the `withHomeflowState` higher-order component to ensure it is passed the relevant state:
@@ -181,16 +179,15 @@ The `ChannelRadioButton` component will render a single radio button for channel
 import React from 'react';
 import { ChannelRadioButton } from 'homeflowjs/search';
 
-<ChannelRadioButton
-  type="sales"
-  inputClass="form-check-input"
-  labelClass="form-check-label"
-/>
-<ChannelRadioButton
-  type="lettings"
-  inputClass="form-check-input"
-  labelClass="form-check-label"
-/>
+<label className="home-search__channel" htmlFor="channel-sales">
+  <ChannelRadioButton value="sales" id="channel-sales" />
+  <span>Buy</span>
+</label>
+
+<label className="home-search__channel" htmlFor="channel-lettings">
+  <ChannelRadioButton value="lettings" id="channel-lettings" />
+  <span>Rent</span>
+</label>
 
 ```
 
@@ -198,7 +195,7 @@ import { ChannelRadioButton } from 'homeflowjs/search';
 
 | Prop            | Type    | Description                                                            |
 |-----------------|---------|------------------------------------------------------------------------|
-|type             |String   |Should be 'sales' or 'lettings'                                         |
+|value            |String   |Should be 'sales' or 'lettings'                                         |
 
 ## `PriceSelect`
 
