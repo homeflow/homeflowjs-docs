@@ -24,6 +24,7 @@ module.exports = {
       'guides/cookie-consent',
       'guides/instant-valuation',
       'guides/booking-calendars',
+      'guides/loaders',
     ],
   },
 };

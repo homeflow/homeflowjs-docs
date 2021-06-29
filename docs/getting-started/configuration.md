@@ -48,7 +48,9 @@ Homeflow.set('carousel_items', {% include_as_json data/home_carousel_items %})
 
 Using this technique you can construct complex structures from Liquid code ready to be used by your front-end.
 
+:::note
 For compatibility with older themes, `Ctesius.addConfig` and `Ctesius.getConfig` are available as aliases to `Homeflow.set` and `Homeflow.get` (although new themes should only use the new `Homeflow` object).
+:::
 
 You should also add this partial to the _bottom_ of the `<body>` element **on every page**:
 

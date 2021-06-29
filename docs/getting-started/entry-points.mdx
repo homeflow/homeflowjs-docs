@@ -21,7 +21,7 @@ Below are examples of entry points and their corresponding bundle names:
 | Property show page (e.g. /properties/:id/sales)   | properties-show.jsx    | properties-show.bundle.js   |
 | Branches index page (e.g. /branches)              | branches-index.js      | branches-index.bundle.js    |
 
-If you need to include a module on multiple pages, you can simple import it into each entry point it is required. For example, you may have a module for a carousel that needs to be included on both the homepage and properties show page. You might import it into the relevant entry point like this (in this example we're imagining the module exports a default function that runs the carousel code):
+If you need to include a module on multiple pages, you can simply import it into each entry point it is required. For example, you may have a module for a carousel that needs to be included on both the homepage and properties show page. You might import it into the relevant entry point like this (in this example we're imagining the module exports a default function that runs the carousel code):
 
 ```js
 import initCarousel from './components/carousel';
