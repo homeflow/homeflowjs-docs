@@ -70,7 +70,7 @@ export default connect(
 
 ## Actions
 
-You can dispatch various actions from HomeflowJS by importing them from the relevant file in `homeflowjs/actions` and connecting them to your components. For example:
+You can dispatch various action creators from HomeflowJS by importing them from the relevant file in `homeflowjs/actions` and connecting them to your components. For example:
 
 ```jsx
 import React from 'react';
@@ -85,10 +85,15 @@ const mapDispatchToProps = {
   setSearchField,
 };
 
-export default MyComponent;
+export default connect(
+  null,
+  mapDispatchToProps,
+)(MyComponent);
 ```
 
 You can find all available actions by looking inside the `actions` directory inside HomeflowJS.
+
+For more info on action creators and `mapDispatchToProps`, please check the documentation for [react-redux](https://react-redux.js.org/using-react-redux/connect-mapdispatch).
 
 ## `Homeflow.getState`
 
