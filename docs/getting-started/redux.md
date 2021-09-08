@@ -68,6 +68,28 @@ export default connect(
 )(MyCustomComponent)
 ```
 
+## Actions
+
+You can dispatch various actions from HomeflowJS by importing them from the relevant file in `homeflowjs/actions` and connecting them to your components. For example:
+
+```jsx
+import React from 'react';
+import { connect } from 'react-redux;
+import { setSearchField } from 'homeflowjs/actions/search.actions';
+
+const MyComponent = ({ setSearchField }) => (
+  <button type="button" onClick={() => setSearchField({ maxPrice: 99999 })} />
+);
+
+const mapDispatchToProps = {
+  setSearchField,
+};
+
+export default MyComponent;
+```
+
+You can find all available actions by looking inside the `actions` directory inside HomeflowJS.
+
 ## `Homeflow.getState`
 
 While you should always connect your React components to any state you need using `react-redux`, you may find a situation where you need to access the Redux data directly.
