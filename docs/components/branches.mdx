@@ -1,0 +1,97 @@
+---
+id: branches
+title: Branches
+---
+
+## `BranchesSearchForm`
+
+The `BranchesSearchForm` component should wrap all fields on your search form.
+
+```jsx
+import React from "react";
+import { BranchesSearchForm } from "homeflowjs/branches";
+
+const BranchesSearchFormExample = () => (
+  <BranchesSearchForm>
+    {/* Additional form fields and other JSX will go here */}
+  </BranchesSearchForm>
+);
+```
+
+### Props
+
+| Prop       | Type | Description                          |
+| ---------- | ---- | ------------------------------------ |
+| children   | node | Additional form fields and other JSX |
+| otherProps | any  | Additional props i.e className       |
+
+## `BranchesSearchInput`
+
+You will next need to add the `BranchesSearchInput` component to the `BranchesSearchForm` and a button with `type="submit"`, to handle the form Submission.
+
+```jsx
+import React from "react";
+import { BranchesSearchForm, BranchesSearchInput } from "homeflowjs/branches";
+
+const BranchesSearchFormExample = () => (
+  <BranchesSearchForm>
+    <BranchesSearchInput
+      placeholder="Enter your location"
+    />
+    <button type="submit" className="button">
+      Search
+    </button>
+  </BranchesSearchForm>
+);
+```
+
+### Props
+
+| Prop        | Type   | Description                    |
+| ----------- | ------ | ------------------------------ |
+| Placeholder | string | Placeholder text for the input |
+
+## Adding a custom button to the `BranchesSearchInput`
+
+Lets say we wanted to add another button to clear our `BranchesSearchInput`,
+for example we want the input to have a close icon for the user to clear
+the data in the input. First we need to import `connect` and `setBranchesSearch` as the `BranchesSearchInput` is connected to redux. By adding an `onClick={handleClear}` to our clear button that fires `setBranchesSearch` with an empty string as it argument, we can clear the `BranchesSearchInput`.
+
+```jsx
+import React from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { setBranchesSearch } from "homeflowjs/actions/branches.actions";
+import { BranchesSearchForm, BranchesSearchInput } from "homeflowjs/branches";
+
+const BranchesSearchFormExample = ({ setBranchesSearch }) => {
+  const handleClear = () => {
+    setBranchesSearch("");
+  };
+  return (
+    <BranchesSearchForm>
+      <div>
+        <BranchesSearchInput
+          placeholder="Enter your location"
+        />
+        <button type="button" onClick={handleClear}>
+          Close icon
+        </button>
+      </div>
+      <button type="submit" className="button">
+        Search
+      </button>
+    </BranchesSearchForm>
+  );
+};
+
+BranchesSearchExample.propTypes = {
+  setBranchesSearch: PropTypes.func.isRequired,
+};
+
+const mapDispatchToProps = {
+  setBranchesSearch,
+};
+
+export default connect(null, mapDispatchToProps)(BranchesSearchExample);
+```

@@ -9,6 +9,7 @@ module.exports = {
       'getting-started/retrofitting',
     ],
     'Components': [
+      'components/branches',
       'components/property-search',
       'components/property-results',
       'components/property-show',
