@@ -75,4 +75,45 @@ If it's a regular HTML form in a liquid template, simply include the token using
 
 ## Recaptcha
 
-Coming soon.
+If you need to prevent a form from submitting to handle validation, you will need to add the
+`hfjs-form-invalid` class to your form. This is because Recaptcha will submit your form regardless of any
+code stopping your form from submitting. The example bellow show you how to implement this. Remember
+you will need to remove the `hfjs-form-invalid`  when you go to submit the form (i.e if its passed validation).
+
+```jsx
+import React, { useState } from 'react';
+
+const ExampleForm = () => {
+  const [value, setValue] = useState('');
+  const [preventRecaptcha, setPreventRecaptcha] = useState(true);
+
+  const handleInputChange = e => setValue(e.target.value);
+
+  const handleSubmit = (e) => {
+    // If value is empty stop form form being submitted
+    if (value === '') {
+      e.preventDefault();
+      setPreventRecaptcha(true);
+      return;
+    }
+
+    /**
+     * If no errors remove class hfjs-form-invalid and submit
+     * form (as e.preventDefault() not called)
+     */
+    setPreventRecaptcha(false);
+  };
+
+  return (
+    <form
+      className={`${preventRecaptcha ? 'hfjs-form-invalid' : ''}`}
+      onSubmit={handleSubmit}
+    >
+      <input type="text" value={value} onChange={handleInputChange} />
+      <input type="submit" value="Submit" />
+    </form>
+  );
+};
+
+export default ExampleForm;
+```
