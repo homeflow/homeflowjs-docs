@@ -74,7 +74,7 @@ You can dispatch various action creators from HomeflowJS by importing them from 
 
 ```jsx
 import React from 'react';
-import { connect } from 'react-redux;
+import { connect } from 'react-redux';
 import { setSearchField } from 'homeflowjs/actions/search.actions';
 
 const MyComponent = ({ setSearchField }) => (
