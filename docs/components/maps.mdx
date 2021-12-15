@@ -124,10 +124,23 @@ const MyBranchesMap = () => (
 );
 ```
 
+You can override the default icon by passing an `iconConfig` prop. The shape of the object should match the example in the Leaflet docs: https://leafletjs.com/reference.html#icon
+
+The default iconConfig looks like this:
+
+```
+{
+  iconRetinaUrl: '/assets/marker-icon.png',
+  iconUrl: '/assets/marker-icon.png',
+  shadowUrl: '/assets/marker-shadow.png',
+}
+```
+
 | Prop            | Type    | Description                                                                          |
 |-----------------|---------|--------------------------------------------------------------------------------------|
 |`CustomPopup`    |Component|Component to render as a popup when markers are clicked                               |
 |`google `        |Boolean  |Use a Google map layer on top of the Leaflet map (requires Google API key to be set)  |
+|`iconConfig `    |Object   |Pass a custom object to be passed to Leaflet Icon                                     |
 
 ## `BranchMap`
 
