@@ -158,7 +158,10 @@ ReactDOM.render(
 );
 ```
 
+You can override the default icon by passing an `iconConfig` prop as described for the BranchesMap component above.
+
 | Prop            | Type    | Description                                                            |
 |-----------------|---------|------------------------------------------------------------------------|
 |`google `        |Boolean  |Use Google Maps instead of Leaflet to render the map.                   |
 |`custom`         |String   |Pass "simple_bw" to render a simplified grayscale google map.           |
+|`iconConfig `    |Object   |Pass a custom object to be passed to Leaflet Icon                       |
