@@ -51,13 +51,42 @@ This will connect them to the various state and actions provided by HomeflowJS t
 
 ## Connecting React Components
 
-Use `connect` from `react-redux` to pass state from HomeflowJS to any custom component:
+### Functional Components
+
+Use the `useSelector` hook from `react-redux` to access the Redux store in a functional component:
+
+```jsx
+import React from 'react';
+import { useSelector } from 'react-redux';
+
+const MyFunctionalComponent = () => {
+  const { placeId } = useSelector(state => state.search);
+
+  return (
+    <div>
+      <span>Place ID: {placeId}</span>
+    </div>
+  );
+};
+```
+
+### Class Components
+
+Use `connect` from `react-redux` to pass state from HomeflowJS to a class component:
 
 ```jsx
 import React from 'react';
 import { connect } from 'react-redux';
 
-const MyCustomComponent = ({ placeId }) => <p>{placeId}</p>;
+class MyClassComponent extends React.Component {
+  render() {
+    return (
+      <div>
+        <span>Place ID: {this.props.placeId}</span>
+      </div>
+    );
+  }
+}
 
 const mapStateToProps = state => ({
   placeId: state.search.placeId,
@@ -65,12 +94,34 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-)(MyCustomComponent)
+)(MyClassComponent)
 ```
 
 ## Actions
 
 You can dispatch various action creators from HomeflowJS by importing them from the relevant file in `homeflowjs/actions` and connecting them to your components. For example:
+
+### Functional Components
+
+Use the `useDispatch` hook from `react-redux` to dispatch actions from a functional component:
+
+```jsx
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { setSearchField } from 'homeflowjs/actions/search.actions';
+
+const MyFunctionalComponent = () => {
+  const dispatch = useDispatch();
+
+  return (
+    <button type="button" onClick={() => dispatch(setSearchField({ maxPrice: 99999 }))} />
+  );
+};
+```
+
+### Class Components
+
+Use `connect` with a `mapDispatchToProps` function as the second argument to dispatch actions from a class component:
 
 ```jsx
 import React from 'react';
