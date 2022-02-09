@@ -14,6 +14,7 @@ module.exports = {
       'components/property-results',
       'components/property-show',
       'components/modals',
+      'components/responsive-image',
       'components/user-profile',
       'components/notifications',
       'components/maps',

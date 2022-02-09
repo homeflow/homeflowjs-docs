@@ -1,0 +1,78 @@
+---
+id: responsive-image
+title: ResponsiveImage
+---
+
+## `ResponsiveImage`
+
+If you need an image that needs to be a **[responsive image](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images)** and you want to a react component to generate the `srcset` for this image you can use the `ResponsiveImage` component.
+
+Its props are as follows:
+
+| Prop            | Type    | Description                                                                   |
+|-----------------|---------|-------------------------------------------------------------------------------|
+|src              | string  | This is the src for the image                                                 |
+|alt              | string  | This is the alt test for your image                                           |
+|srcSet           | string  | This is an optional string you can pass in if you want to add a custom srcset |
+|className        | string  | This allows you to add custom styles to the component                         |
+|otherProps       |         | This allows you to add custom props to the component                          |
+
+
+### Usage 
+
+If you wanted an image to have the default `srcset`, 175w to 1920w you would use the component like this:
+
+:::caution
+
+Your `src` prop must be a string that contains `_x_`, the component will still work even if your string doesn't contain `_x_`
+however it will not have a a working `srcset`.
+
+:::
+
+```jsx
+
+import React from 'react';
+import { ResponsiveImage } from 'homeflowjs/images';
+
+const ExampleComponent = () => {
+
+  const exampleImage = 'https://mr1.homeflow-assets.co.uk/files/site_asset/image/4743/3745/_x_/placeholder-house.jpg';
+
+  return (
+    <ResponsiveImage 
+      className="example-class-name"
+      src={exampleImage}
+      alt="Example image"
+     />
+  )
+}
+
+
+```
+
+## `replaceImageDimensions`
+
+The `replaceImageDimensions` function allows you to replace the `_x_` with a width, height or a width and height value. It takes three arguments, src, width and height.  You can use this function when passing in your own custom `srcset` to the `ResponsiveImage` component for example:
+
+``` jsx
+
+import { ResponsiveImage, replaceImageDimensions } from 'homeflowjs/images';
+
+const ExampleComponent = () => {
+
+  const exampleImage = 'https://mr1.homeflow-assets.co.uk/files/site_asset/image/4743/3745/_x_/placeholder-house.jpg';
+  const customSrcSet =
+   `${replaceImageDimensions(src, 200, 200)} 200w,
+    ${replaceImageDimensions(src, 400)} 400w,`;
+
+  return (
+    <ResponsiveImage 
+      className="example-class-name"
+      src={exampleImage}
+      alt="Example image"
+      srcSet={customSrcSe}
+     />
+  )
+}
+
+``` 
