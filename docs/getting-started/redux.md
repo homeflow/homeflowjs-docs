@@ -51,6 +51,8 @@ This will connect them to the various state and actions provided by HomeflowJS t
 
 ## Connecting React Components
 
+As per the [advice in the official Redux style guide](https://redux.js.org/style-guide/style-guide#use-the-react-redux-hooks-api), we suggest using the hooks API wherever possible.
+
 ### Functional Components
 
 Use the `useSelector` hook from `react-redux` to access the Redux store in a functional component:
@@ -60,7 +62,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 
 const MyFunctionalComponent = () => {
-  const { placeId } = useSelector(state => state.search);
+  const placeId = useSelector(state => state.search.placeId);
 
   return (
     <div>
