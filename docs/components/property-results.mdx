@@ -34,15 +34,16 @@ import { PropertyResults } from 'homeflowjs/properties';
 
 :::caution
 
-The inserts prop is currently in alpha, therefor it does not support multiple components.
+The inserts prop is currently in alpha, therefore it does not support multiple components.
 
 :::
 
-- `inserts` is an array that allows you to pass a component to the `PropertyResults` component. This allows the 
-`PropertyResults` component to render components such as "banners" within the results grid. The array must contain 
+- `inserts` can optionally be passed to the `PropertyResults` as an array in order to render other components at certain intervals 
+between the search results. This is commonly used to insert adverts, banners or call-to-actions. The array must contain 
 an object with the `component` and `frequency` keys. The `component` is what you would like to render and the `frequency` 
 is how often you would like to render it, i.e you want your banner to after render every third item in the grid. 
-See example bellow:
+
+See example below:
 
 ``` jsx
 <PropertyResults
