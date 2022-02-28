@@ -30,6 +30,31 @@ import { PropertyResults } from 'homeflowjs/properties';
 - `infiniteScroll` enables infinite scroll (automatically loading the next page of results when the user scrolls to the bottom of the results container). Default is `false`.
 - `noMap` - pass this if you do not want the `PropertyResults` component to include a map view (in case you want to render the map separately).
 
+#### The inserts prop
+
+:::caution
+
+The inserts prop is currently in alpha, therefor it does not support multiple components.
+
+:::
+
+- `inserts` is an array that allows you to pass a component to the `PropertyResults` component. This allows the 
+`PropertyResults` component to render components such as "banners" within the results grid. The array must contain 
+an object with the `component` and `frequency` keys. The `component` is what you would like to render and the `frequency` 
+is how often you would like to render it, i.e you want your banner to after render every third item in the grid. 
+See example bellow:
+
+``` jsx
+<PropertyResults
+  GridItem={GridItem}
+  defaultView="grid"
+  inserts={[
+    { component: <CTAImageBackgroundWithProps />, frequency: 3 }, // appears every 3 slots
+  ]}
+/>
+```
+
+
 ## `LoadMoreButton`
 
 If you wish to control pagination asynchronously using a button, you can use the `LoadMoreButton` component. It will automatically disappear once there are no more properties to render.
