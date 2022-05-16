@@ -1,0 +1,41 @@
+---
+id: hooks
+title: Hooks
+---
+
+## `useGeolocate`
+
+Runs geolocation to get the user's location and returns a Homeflow place object containing a label and a place ID.
+
+```jsx
+import React from 'react';
+import { useGeolocate } from 'homeflowjs/hooks';
+import { propertySearch } from 'homeflowjs/search';
+
+const MyComponent = () => {
+  const { handleGeolocate, location } = useGeolocate();
+
+  if (location) {
+    const { label, place } = location;
+    const newSearch = {
+      ...currentSearch,
+      q: label,
+      placeId: place,
+      isQuerySearch: false,
+    };
+
+    // this uses the result of geolocation to instantly run a new search
+    // although you could also just populate the search form etc
+    propertySearch(newSearch);
+  }
+
+  return (
+    <button
+      type="button"
+      onClick={handleGeolocate}
+    >
+      Geolocate
+    </button>
+  );
+};
+```
