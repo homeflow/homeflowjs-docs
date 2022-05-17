@@ -9,11 +9,13 @@ Runs geolocation to get the user's location and returns a Homeflow place object 
 
 ```jsx
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { useGeolocate } from 'homeflowjs/hooks';
 import { propertySearch } from 'homeflowjs/search';
 
 const MyComponent = () => {
   const { handleGeolocate, location } = useGeolocate();
+  const currentSearch = useSelector((state) => state.search.currentSearch);
 
   if (location) {
     const { label, place } = location;
