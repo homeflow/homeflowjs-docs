@@ -16,6 +16,7 @@ module.exports = {
       type: 'category',
       label: 'Components',
       items: [
+        'components/articles',
         'components/branches',
         'components/property-search',
         'components/property-results',
