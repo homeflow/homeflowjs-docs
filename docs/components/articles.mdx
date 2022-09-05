@@ -14,9 +14,9 @@ import ArticleCard from './article-card';
 
 const ParentComponent = () => (
   <ArticlesGrid 
-    gridClass="flex flex-wrap gap-5 max-w-5xl mx-auto mb-12 lg:mb-8 justify-center" 
+    gridClass="custom-classname" 
     ArticleItem={({ article }) => (<ArticleCard article={article} />)}
-    noArticlesClass="text-center font-sans font-light"
+    noArticlesClass="custom-classname"
   />
 );
 ```
@@ -60,8 +60,8 @@ import { LoadMoreButton } from 'homeflowjs/articles'
 const ParentComponent = () => (
   <LoadMoreButton 
     CustomLoader={() => <LoadingButton variant="primary" className="mx-auto h-13 w-full lg:w-50 max-w-xs lg:mb-4" />}
-    loadMoreButtonClass="h-13 mx-auto text-center w-full p-4 font-sans text-white bg-custom-3 hover:bg-primary-tint active:bg-custom-8 max-w-xs lg:w-50"
-    loadMoreButtonContainerClass="mx-auto text-center w-full lg:mb-4"
+    loadMoreButtonClass="custom-classname"
+    loadMoreButtonContainerClass="custom-classname"
   >
     <span className="relative top-0.5">Load More</span>
   </LoadMoreButton>
@@ -110,12 +110,12 @@ const ParentComponent = () => {
   const topicsData = Homeflow.get('articles')?.topics?.current_topic;
   return (
     <TopicSelector
-      containerClass="w-full max-w-xs mx-auto"
-      buttonClassShowTopics={`${BUTTON_STYLING} border-custom-1`}
-      buttonClassHideTopics={`${BUTTON_STYLING} border-custom-5`}
-      listWrapperClass="relative w-full"
-      listAnchorTagClass="h-13 block w-full h-full px-2 py-4 text-on-navigation-primary-text cursor-pointer hover:bg-custom-6 capitalize font-light"
-      ulClass="absolute w-full -mt-px max-h-72 custom-scroll-bar text-on-navigation-primary-text z-10 font-sans bg-white border border-custom-1"
+      containerClass="custom-classname"
+      buttonClassShowTopics="custom-classname"
+      buttonClassHideTopics="custom-classname"
+      listWrapperClass="custom-classname"
+      listAnchorTagClass="custom-classname"
+      ulClass="custom-classname"
     >
       <div className="capitalize">
         {topicsData || 'Select topic'}
