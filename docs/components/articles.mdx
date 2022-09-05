@@ -1,0 +1,145 @@
+---
+id: articles
+title: Articles
+---
+
+## `ArticlesGrid`
+
+The `ArticlesGrid` component should wrap and display all the articles coming from the redux store when on the articles list page.
+
+```jsx
+import React from 'react';
+import { ArticlesGrid } from 'homeflowjs/articles'
+import ArticleCard from './article-card';
+
+const ParentComponent = () => (
+  <ArticlesGrid 
+    gridClass="custom-classname" 
+    ArticleItem={({ article }) => (<ArticleCard article={article} />)}
+    noArticlesClass="custom-classname"
+  />
+);
+```
+
+### Props
+
+| Prop       | Type | Description                          |
+| ---------- | ---- | ------------------------------------ |
+| gridClass   | string | `className` for the wrapper, **is required** |
+| ArticleItem | elementType - isRequired  | Article card component, **is required**. **Must have** `article` as a prop|
+| noArticlesClass | string  | `className` for the `div` containing the message 'No articles found...' |
+
+
+## `LoadMoreButton`
+
+The `LoadMoreButton` when on the articles list page, will load the next page of articles, show a loader during fetching and hide when error or no more articles to show.
+
+It requires for the `_articles_list.ljson` (the default from Ctesius or the custom one placed in `views/articles` ) containing the following code:
+
+``` ljson
+articles :
+{% for article in articles %}
+  -
+    ...
+{% endfor %}
+pagination :
+  current_page : {{ pagination.current_page }}
+  has_prev_page : {{ pagination.has_prev_page }}
+  total_count : {{ pagination.total_count }}
+  has_next_page : {{ pagination.has_next_page }}
+  from_record : {{ pagination.from_record }}
+  to_record : {{ pagination.to_record}}
+topics :
+  ...
+```
+
+```jsx
+import React from 'react';
+import { LoadMoreButton } from 'homeflowjs/articles'
+
+const ParentComponent = () => (
+  <LoadMoreButton 
+    CustomLoader={() => <LoadingButton variant="primary" className="mx-auto h-13 w-full lg:w-50 max-w-xs lg:mb-4" />}
+    loadMoreButtonClass="custom-classname"
+    loadMoreButtonContainerClass="custom-classname"
+  >
+    <span className="relative top-0.5">Load More</span>
+  </LoadMoreButton>
+);
+```
+
+### Props
+
+| Prop       | Type | Description                          |
+| ---------- | ---- | ------------------------------------ |
+| CustomLoader   | elementType | What will be displayed when loading more articles. Displays default if not privided |
+| loadMoreButtonClass | string | `className` for the button |
+| loadMoreButtonContainerClass | string  | `className` for the parent `div` |
+| children | node  | What the button displays inside, **is required** |
+
+
+
+## `TopicSelector`
+
+The `TopicSelector` component will display a list of available topics used by the agent.
+
+It requires for the `_articles_list.ljson` (the default from Ctesius or the custom one placed in `views/articles` ) containing the following code:
+
+``` ljson
+articles :
+{% for article in articles %}
+  -
+    ...
+{% endfor %}
+pagination :
+  ...
+topics :
+  current_topic: {{ topic | yaml_safe }}
+  topics_list: 
+  {% for available_topic in agency.article_topics %}
+  -
+    {{ available_topic | yaml_safe }}
+  {% endfor %}
+```
+
+```jsx
+import React from 'react';
+import { TopicSelector } from 'homeflowjs/articles'
+
+const ParentComponent = () => {
+  const topicsData = Homeflow.get('articles')?.topics?.current_topic;
+  return (
+    <TopicSelector
+      containerClass="custom-classname"
+      buttonClassShowTopics="custom-classname"
+      buttonClassHideTopics="custom-classname"
+      listWrapperClass="custom-classname"
+      listAnchorTagClass="custom-classname"
+      ulClass="custom-classname"
+    >
+      <div className="capitalize">
+        {topicsData || 'Select topic'}
+        <ChevronLeftIcon className="h-5 absolute right-4 duration-300 top-4 transition-all -rotate-90" />
+      </div>
+    </TopicSelector>
+  );
+}
+```
+
+The variable `topicsData` is not required. In this example is used to display the current topic.
+If removed, update the block: `{topicsData || 'Select topic'}`
+
+
+### Props
+
+Homeflow is now using Tailwind, utility classes can be passed to the component children.
+
+| Prop       | Type | Description                          |
+| ---------- | ---- | ------------------------------------ |
+| containerClass   | string | `className` for the container |
+| buttonClassShowTopics | string | `className` for the button when topics are visible|
+| buttonClassHideTopics | string  | `className` for the button when topics are not visible |
+| listWrapperClass | string  | `className` for the list wrapper |
+| ulClass | string  | `className` for the `ul` listing all the topics |
+| listAnchorTagClass | string  | `className` for the link to the topic (`a` inside `li`) |
+| children | node  | What the component displays inside at all times, **is required** |
