@@ -115,3 +115,21 @@ import { ForgottenPasswordForm } from 'homeflowjs/user';
 |-----------------|---------|------------------------------------------------------------------------|
 |`inputClass`     |String   |Custom class for the email input                                        |
 |`buttonClass`    |String   |Custom class for the submit button                                      |
+
+## `MarketingPreferencesForm`
+
+Form allowing the user to change their marketing preferences.
+
+```jsx
+import { MarketingPreferencesForm } from 'homeflowjs/user';
+
+<MarketingPreferencesForm />
+```
+
+### Props
+
+| Prop            | Type    | Description                                                            |
+|-----------------|---------|------------------------------------------------------------------------|
+|`buttonClass`    |String   |Custom class for the submit button                                      |
+|`buttonSpanClass`|String   |Custom class for the span in submit button                              |
+|`strict`         |Boolean  |false (default): render radio with span, true: render radio with label  |
