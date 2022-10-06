@@ -76,6 +76,12 @@ ReactDOM.render(
 );
 ```
 
+Leaflet property map zoom level is defaulted to 100.
+You can set it to the agency property zoom level (editable in *exampleagency.homeflow.co.uk/configure/website/appearance/preferences* -> Zoom on property maps) by adding to your `views/properties/_show.ljson` file the following:
+```
+agency_zoom_level: {{ agency.preferences.google_maps_property_zoom_level | yaml_safe }}
+```
+
 | Prop            | Type    | Description                                                            |
 |-----------------|---------|------------------------------------------------------------------------|
 |`google `        |Boolean  |Use Google Maps instead of Leaflet to render the map.                   |
