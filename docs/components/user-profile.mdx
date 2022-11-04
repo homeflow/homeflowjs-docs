@@ -61,6 +61,29 @@ const RegisterForm = () => (
 );
 ```
 
+## `UserHoneypot`
+
+Anti-spam honeypot that can be placed anywhere within the `<UserRegisterForm>`. 
+Read more about honeypots [in this Confluence document](https://homeflow.atlassian.net/wiki/spaces/TD/pages/1179254792/Honeypots) for further information.
+
+```jsx
+import { UserRegisterForm, UserInput, UserHoneypot } from 'homeflowjs/user';
+
+const RegisterForm = () => (
+  <UserRegisterForm>
+    {/* honeypot  */}
+    <UserHoneypot />
+    {/* honeypot  */}
+
+    <UserInput name="first_name" />
+    <UserInput name="last_name" />
+    ...
+
+    <button type="submit">Register</button>
+  </UserRegisterForm>
+);
+```
+
 ## `UserSignInForm`
 
 Form for logging a user in. Should be used with `SignInInput` components.
@@ -133,3 +156,24 @@ import { MarketingPreferencesForm } from 'homeflowjs/user';
 |`buttonClass`    |String   |Custom class for the submit button                                      |
 |`buttonSpanClass`|String   |Custom class for the span in submit button                              |
 |`strict`         |Boolean  |false (default): render radio with span, true: render radio with label  |
+
+
+### SignOutButton
+
+Button for signing out the user and finishing the session. Includes notification if success or error.
+
+```jsx
+import { SignOutButton } from 'homeflowjs/user';
+
+<SignOutButton pushHistory reload>
+  Sign Out
+</SignOutButton>
+```
+
+### Props
+
+| Prop         | Type             | Description                                                     |
+|--------------|------------------|-----------------------------------------------------------------|
+|`children`    |Element or string |Text or element inside the button - **is required**              |
+|`pushHistory` |Boolean           |Push history to `/` after successfull sign out. Default: `false` |
+|`reload`      |Boolean           |Reload page after successfull sign out. Default: `false`         |
