@@ -357,3 +357,16 @@ export default connect(mapStateToProps)(SavedSearches);
 ### Props
 
 - `search` - The search object.
+
+### Props
+
+| Prop              | Type    | Description                                                            |
+|-------------------|---------|------------------------------------------------------------------------|
+|`search`           |Object   |The search object  - **is required**                                    |
+|`visitSearchLabel` |String   |Label for viewing the search. Default: `Visit`                          |
+|`removeSearchLabel`|String   |Label for deleting the search. Default: `Remove`                        |
+|`frequencyLabel`   |String   |Label for the dropdown values. Default: `Email me matching properties:` |
+|`deleteButtonClass`|String   |Class for the delete search button                                      |
+|`visitButtonClass` |String   |Class for the visit search button                                       |
+|`selectClass`      |String   |Class for the select/react select wrapper.                              |
+|`reactSelect`      |Boolean  |Whether to use the reac-select library to render a decorated dropdown   |
