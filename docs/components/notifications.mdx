@@ -14,3 +14,23 @@ import { notify } from 'homeflowjs';
 
 notify('Saved property added.', 'success');
 ```
+
+### Custom Styles
+
+You can configure the styles of the `notify` toast by making a `custom_toastify_styles` configuration object.
+
+Begin by making this object available in your JS by using `Homeflow.set()` in a liquid template. You can then pass
+your custom success / error styles into this object.
+
+```
+<script>
+  Homeflow.set('custom_toastify_styles', {
+      success: { background: '#0f0' },
+      error: { background: '#f00' },
+      className: 'custom-notify'
+    });
+</script>
+```
+
+See the [Configuration](getting-started/configuration.md) section for more detail on setting data this way.
+
