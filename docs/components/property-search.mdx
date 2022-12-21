@@ -288,6 +288,9 @@ import { BedroomsSelect } from 'homeflowjs/search';
 |`bedValues`      |Array    |You can override the default options for beds.                          |
 |`reactSelect`    |Boolean  |Whether to use the reac-select library to render a decorated dropdown   |
 
+`bedValues` takes by default an array of numbers, however, it can also take an array of objects 
+with the structure `{ label: String, value: Number }` to provide search options such as `{ label: 'Studio', value: 0 }`
+
 ## `GenericSearchField`
 
 If you need a form field for which there isn't a component provided, or you need more customisation, you can use the `GenericSearchField` component.
