@@ -94,6 +94,7 @@ the Property Map uses the google maps API to render a map in vanilla Javascript 
 so each requires a different approach.
 
 If a leaflet map is rendered you can simply pass a React component as the `CustomPopup` prop, similar to what is done in the Branches Map.
+The `CustomPopup` will receieve the property as a prop.
 
 If a google map is rendered you will need to add a template script to the theme with an `id` of `property-show-map-popup-template`:
 ```
@@ -212,6 +213,7 @@ Similar to the Property Map, the Branch Map uses the google maps Javascript API 
 so rendering a popup will require different implementations depending on whether a leaflet or google map is displayed.
 
 If a leaflet map is rendered you can simply pass a React component as the `CustomPopup` prop, similar to what is done in the Branches Map.
+The `CustomPopup` will receive the branch as a prop.
 
 If a google map is rendered you will need to add a template script to the theme with an `id` of `branch-map-popup-template`:
 ```
