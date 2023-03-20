@@ -86,6 +86,41 @@ agency_zoom_level: {{ agency.preferences.google_maps_property_zoom_level | yaml_
 |-----------------|---------|------------------------------------------------------------------------|
 |`google `        |Boolean  |Use Google Maps instead of Leaflet to render the map.                   |
 |`custom`         |String   |Pass "simple_bw" to render a simplified grayscale google map.           |
+|`CustomPopup`    |Component|Component to render as a popup when marker is clicked                   |
+
+How to add a popup to the Property Map depends on whether it is a google map or leaflet map.
+Unlike the Property Results Map, which renders a react leaflet map with a google tile layer if the `google` prop is included,
+the Property Map uses the google maps API to render a map in vanilla Javascript if the `google` prop is included,
+so each requires a different approach.
+
+If a leaflet map is rendered you can simply pass a React component as the `CustomPopup` prop, similar to what is done in the Branches Map.
+
+If a google map is rendered you will need to add a template script to the theme with an `id` of `property-show-map-popup-template`:
+```
+<script id="property-show-map-popup-template" type="text/template">
+  <div class="relative flex flex-col w-[179px] h-[292px]">
+    <a class="absolute -top-3.5 -left-[20.5px] w-[220px] h-[146px]" href="{{ property.property_url }}" target="_blank">
+      <img class="object-cover w-full h-full cursor-pointer" src="{{ property.main_photo | url_for_generic_image: '300x_' }}" alt="Property in {{ property.display_address }}" />
+    </a>
+    <div class="absolute top-0.5 -right-[4.5px] w-4 h-4">
+      <div class="js-save-property-heart-button" data-property-id="{{ property.property_id }}"></div>
+    </div>
+    <div class="mt-[132px] w-full h-[124px] text-center font-main-sans-light text-button-primary">
+      <h2 class="text-[11px] tracking-widest uppercase text-accent mt-2.5 mb-0 font-lemonmilk_medium">{{ property.status }}</h2>
+      <h2 class="mt-2 mb-0 text-base font-lemonmilk_medium">{{ property.road_name }}</h2>
+      <h3 class="text-sm mt-0.5 mb-0">{{ property.address_sans_road_name }}</h3>
+      <h4 class="mt-3 mb-0 text-xs lowercase">
+        <span class="uppercase font-lemonmilk_regular">{{ property.price_heading }}</span>
+        {{ property.currency }}{{ property.price_without_qualifier }}
+      </h4>
+    </div>
+  </div>
+</script>
+```
+This can either be added directly to `/views/properties/_show.liquid` or can be added to its own liquid partial, which
+can then be included in `/views/properties/_show.liquid`.
+The `innerHTML` of this script will be passed to the google map and attached to the marker. Note that you will need to use liquid
+to generate dynamic property data.
 
 ## `PropertyStreetview`
 
@@ -171,3 +206,44 @@ You can override the default icon by passing an `iconConfig` prop as described f
 |`google `        |Boolean  |Use Google Maps instead of Leaflet to render the map.                   |
 |`custom`         |String   |Pass "simple_bw" to render a simplified grayscale google map.           |
 |`iconConfig `    |Object   |Pass a custom object to be passed to Leaflet Icon                       |
+|`CustomPopup `   |Component|Component to render as a popup when marker is clicked                   |
+
+Similar to the Property Map, the Branch Map uses the google maps Javascript API to render a google map,
+so rendering a popup will require different implementations depending on whether a leaflet or google map is displayed.
+
+If a leaflet map is rendered you can simply pass a React component as the `CustomPopup` prop, similar to what is done in the Branches Map.
+
+If a google map is rendered you will need to add a template script to the theme with an `id` of `branch-map-popup-template`:
+```
+<script id="branch-map-popup-template" type="text/template">
+  <div class="w-96 shadow-lg rounded-lg py-3 px-5 bg-white flex flex-col items-center justify-center p-2">
+    <h6 class="text-lg text-center uppercase font-lemonmilk_regular">
+      {{ branch.name }}
+    </h6>
+    <p class="text-base text-center">
+      {{ branch.address_with_commas | split: ',' | first }}
+    </p>
+    <a
+      class="text-base font-light text-primary"
+      href="tel:{{ branch.contact_number }}"
+    >
+      {{ branch.contact_number }}
+    </a>
+    <a
+      href="{{ branch.branch_url }}"
+      class="text-base underline text-primary"
+    >
+      View More
+    </a>
+    <div class="flex w-full mt-4 mb-1 justify-center">
+      <a class="mx-2 text-primary" href="{{ branch.branch_url }}/sales">View properties for sale</a>
+      <br />
+      <a class="mx-2 text-primary" href="{{ branch.branch_url }}/lettings">View properties to let</a>
+    </div>
+  </div>
+</script>
+```
+This can either be added directly to `/views/branches/_show.liquid` or can be added to its own liquid partial, which
+can then be included in `/views/branches/_show.liquid`.
+The `innerHTML` of this script will be passed to the google map and attached to the marker. Note that you will need to use liquid
+to generate dynamic branch data.
