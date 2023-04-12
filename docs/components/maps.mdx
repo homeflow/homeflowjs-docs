@@ -82,6 +82,16 @@ You can set it to the agency property zoom level (editable in *exampleagency.hom
 agency_zoom_level: {{ agency.preferences.google_maps_property_zoom_level | yaml_safe }}
 ```
 
+Leaflet map markers assume a default anchor position of the top left corner of the icon, which can make most marker icons appear offset whilst zooming. An anchor position of `[12, 41]` has been applied for the 
+default marker icon (anchoring at the center bottom point of the marker). 
+
+If using a custom marker icon this value may need to be updated depending on the dimensions and shape of the custom icon. This can be done by adding to your `views/properties/show.liquid` the following:
+```html
+<script>
+  Homeflow.set('custom_map_icon_anchor', [<x-coord>, <y-coord>]);
+</script>
+```
+
 | Prop            | Type    | Description                                                            |
 |-----------------|---------|------------------------------------------------------------------------|
 |`google `        |Boolean  |Use Google Maps instead of Leaflet to render the map.                   |
@@ -97,7 +107,7 @@ If a leaflet map is rendered you can simply pass a React component as the `Custo
 The `CustomPopup` will receieve the property as a prop.
 
 If a google map is rendered you will need to add a template script to the theme with an `id` of `property-show-map-popup-template`:
-```
+```html
 <script id="property-show-map-popup-template" type="text/template">
   <div class="relative flex flex-col w-[179px] h-[292px]">
     <a class="absolute -top-3.5 -left-[20.5px] w-[220px] h-[146px]" href="{{ property.property_url }}" target="_blank">
@@ -216,7 +226,7 @@ If a leaflet map is rendered you can simply pass a React component as the `Custo
 The `CustomPopup` will receive the branch as a prop.
 
 If a google map is rendered you will need to add a template script to the theme with an `id` of `branch-map-popup-template`:
-```
+```html
 <script id="branch-map-popup-template" type="text/template">
   <div class="w-96 shadow-lg rounded-lg py-3 px-5 bg-white flex flex-col items-center justify-center p-2">
     <h6 class="text-lg text-center uppercase font-lemonmilk_regular">
