@@ -55,6 +55,24 @@ See example below:
 />
 ```
 
+- also, there's an alternative inserts logic, it works via indexes. It's used 
+when you want to show a component after a specific index in the property 
+list. Similar to the frequency, the array must contain an object with the 
+component and index keys. The component is what you would like to render and 
+the index indicates the position of the property card after which the component 
+will be rendered. It supports multiple inserts.
+
+See example below:
+
+``` jsx
+<PropertyResults
+  ListItem={ListItem}
+  inserts={[
+    { component: <CTAImageBackgroundWithProps />, index: 5 }, // appears after 5th property
+    { component: <CTAImageBackgroundWithProps />, index: 15 }, // appears after 15th property
+  ]}
+/>
+```
 
 ## `LoadMoreButton`
 
