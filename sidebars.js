@@ -10,6 +10,7 @@ module.exports = {
         'getting-started/redux',
         'getting-started/optimisation',
         'getting-started/retrofitting',
+        'getting-started/adding-scss-to-components',
       ],
     },
     {
